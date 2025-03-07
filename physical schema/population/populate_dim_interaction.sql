@@ -1,0 +1,9 @@
+INSERT INTO dim_interaction (interaction_key, interaction_type, severity) VALUES (1, 'inquire', 'High');
+INSERT INTO dim_interaction (interaction_key, interaction_type, severity) VALUES (2, 'feedback', 'Medium');
+INSERT INTO dim_interaction (interaction_key, interaction_type, severity) VALUES (3, 'complaint', 'Critical');
+INSERT INTO dim_interaction (interaction_key, interaction_type, severity) VALUES (4, 'inquire', 'Low');
+INSERT INTO dim_interaction (interaction_key, interaction_type, severity) VALUES (5, 'feedback', 'High');
+INSERT INTO dim_interaction (interaction_key, interaction_type, severity) VALUES (6, 'complaint', 'Medium');
+INSERT INTO dim_interaction (interaction_key, interaction_type, severity) VALUES (7, 'inquire', 'Medium');
+INSERT INTO dim_interaction (interaction_key, interaction_type, severity) VALUES (8, 'feedback', 'Low');
+INSERT INTO dim_interaction (interaction_key, interaction_type, severity) VALUES (9, 'complaint', 'High');
