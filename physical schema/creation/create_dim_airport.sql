@@ -1,6 +1,6 @@
 CREATE TABLE dim_airport (
     airport_key NUMBER,
-    airport_id VARCHAR2(50),
+    airport_id NUMBER,
     airport_name VARCHAR2(100),
     airport_code VARCHAR2(10),
     airport_city VARCHAR2(100),
