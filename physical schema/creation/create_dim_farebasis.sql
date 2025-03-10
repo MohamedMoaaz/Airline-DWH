@@ -1,5 +1,5 @@
 CREATE TABLE dim_farebasis (
-    farebasis_key NUMBER,
+    farebasis_key NUMBER, 
     farebasis_code VARCHAR2(50) ,
     farebasis_class VARCHAR2(50),
     farebasis_type VARCHAR2(50),
