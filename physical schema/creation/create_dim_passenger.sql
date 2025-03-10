@@ -1,6 +1,6 @@
 CREATE TABLE dim_passenger (
     passenger_key NUMBER,
-    passenger_id VARCHAR2(50),
+    passenger_id NUMBER,
     passenger_national_id VARCHAR2(50),
     passenger_passport_id VARCHAR2(50),
     passenger_firstname VARCHAR2(100),
