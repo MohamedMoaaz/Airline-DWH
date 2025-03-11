@@ -5,7 +5,6 @@
     transaction_date_key NUMBER,
     expiration_date_key NUMBER,
     aircraft_key NUMBER,
-    crew_key  NUMBER,
     crew_employee_bridge_key NUMBER,
     service_key NUMBER,
     promotion_key NUMBER,
