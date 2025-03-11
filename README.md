@@ -70,6 +70,11 @@ The `dim_employee` table stores descriptive attributes related to employees, pro
 - Helps in tracking job roles, salaries, and hiring trends.
 - Supports reporting and workforce analysis.
 
+##KPIs
+#todo
+
+##quries
+#todo
 
 
 
