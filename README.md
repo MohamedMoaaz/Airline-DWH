@@ -44,6 +44,70 @@ This fact table references dimensions from `Passenger`, `Aircraft`, `Fare`, `Cre
 | **ServicesFees** | Includes optional services like in-flight meals, internet, and entertainment. |
 | **Revenue** | Sum of `FarePaid`, `LuggageFees`, `UpgradeFees`, and `ServicesFees` for a single ticket. |
 
+# Fact Table: `fact_reservation`
+
+## Description  
+The `fact_reservation` table stores transactional data related to flight reservations, including pricing, fees, and promotions. This table provides insights into reservation trends, revenue calculations, and passenger booking behavior.
+
+### Granularity:  
+The granularity of this fact table is a **single reservation transaction** for a specific passenger. Each row represents a unique reservation, including details such as ticket pricing, applied fees, and promotions. This ensures that the data is captured at the most detailed level for analysis.
+
+![Fact_Reservation](https://github.com/user-attachments/assets/20c1ed10-4b34-4dc5-871c-fa42fb3d38dc)
+
+## Columns  
+
+### Foreign Keys (Dimensional References)  
+These columns link to various dimension tables to provide detailed contextual information.  
+
+| Column Name              | Data Type      | Description                                          | Reference Dimension |
+|--------------------------|---------------|------------------------------------------------------|----------------------|
+| `Reservation_Key`        | NUMBER(10) (PK) | Unique identifier for each reservation record.       | - |
+| `ticket_id`             | NUMBER(10)     | Unique identifier for the ticket.                   | - |
+| `channel_key`           | NUMBER(10)     | Booking channel used for the reservation.           | `dim_channel` |
+| `promotion_key`         | NUMBER(10)     | Promotion applied to the reservation.               | `dim_promotion` (if applicable) |
+| `passenger_key`         | NUMBER(10)     | Passenger associated with the reservation.          | `dim_passenger` |
+| `fare_basis_key`        | NUMBER(10)     | Fare classification for the reservation.            | `dim_fare_basis` |
+| `aircraft_key`          | NUMBER(10)     | Aircraft used for the flight.                       | `dim_aircraft` |
+| `source_airport`        | NUMBER(10)     | Departure airport.                                  | `dim_airport` |
+| `destination_airport`   | NUMBER(10)     | Arrival airport.                                    | `dim_airport` |
+
+### Date and Time Attributes  
+These attributes provide insights into reservation and flight schedules.  
+
+| Column Name              | Data Type      | Description                                          | Reference Dimension |
+|--------------------------|---------------|------------------------------------------------------|----------------------|
+| `reservation_date_key`   | NUMBER(8)     | Date when the reservation was made.                 | `dim_date` |
+| `departure_date_key`     | NUMBER(8)     | Scheduled departure date of the flight.             | `dim_date` |
+| `departure_time`         | TIMESTAMP     | Exact departure time of the flight.                 | - |
+| `Reservation_timestamp`  | TIMESTAMP     | Timestamp when the reservation was created.         | - |
+
+### Reservation Details  
+
+| Column Name              | Data Type      | Description                                          |
+|--------------------------|---------------|------------------------------------------------------|
+| `payment_method`         | VARCHAR2(50)  | Payment method used for the reservation.            |
+| `seat_no`               | VARCHAR2(10)  | Seat assigned to the passenger.                     |
+| `Is_Cancelled`          | NUMBER(1)     | Indicates if the reservation was canceled (0 = No, 1 = Yes). |
+
+## Measures & Calculations  
+
+These numeric attributes are used for financial analysis and revenue tracking.  
+
+| Column Name          | Data Type      | Description                                              | Calculation |
+|----------------------|---------------|----------------------------------------------------------|-------------|
+| `Promotion_Amount`  | NUMBER(10,2)  | Discount applied to the reservation.                    | - |
+| `tax_amount`        | NUMBER(10,2)  | Tax amount added to the ticket price.                   | - |
+| `Operational_Fees`  | NUMBER(10,2)  | Additional fees for operations (e.g., service fees).    | - |
+| `Cancelation_Fees`  | NUMBER(10,2)  | Fees applied if the reservation is canceled.            | - |
+| `Fare_Price`        | NUMBER(10,2)  | Base fare price of the ticket.                          | - |
+| `Final_Price`       | NUMBER(10,2)  | Total price paid by the passenger.                      | `Fare_Price + Operational_Fees + tax_amount + Cancelation_Fees - Promotion_Amount` |
+
+## Usage  
+- Supports revenue analysis and pricing optimization.  
+- Helps in understanding passenger booking patterns and channel preferences.  
+- Tracks the impact of promotions and cancellation fees on overall revenue.  
+- Provides insights into reservation trends and seat allocation efficiency.  
+
 ## Dimension Table Documentation
 
 ### Table Name: `dim_employee`
@@ -168,6 +232,73 @@ The `dim_airport` table stores details about airports, including their location,
 ### Usage  
 - Supports route analysis and airport traffic monitoring.  
 - Helps in evaluating airport infrastructure and capacity.  
+
+## Table Name: `dim_aircraft`
+
+### Description  
+The `dim_aircraft` table stores details about aircraft, including their manufacturer, capacity, and performance specifications. This dimension supports analysis of fleet utilization, aircraft performance, and seating capacity.
+
+### Columns  
+
+| Column Name                | Data Type      | Description                                                      |
+|----------------------------|---------------|------------------------------------------------------------------|
+| `aircraft_key`            | INT (PK)      | Unique identifier for each aircraft record.                      |
+| `aircraft_model`          | VARCHAR(50)   | Model name of the aircraft.                                      |
+| `aircraft_manufacturer`   | VARCHAR(50)   | Manufacturer of the aircraft (e.g., Boeing, Airbus).             |
+| `aircraft_capacity`       | INT           | Total seating capacity of the aircraft.                         |
+| `aircraft_enginetype`     | VARCHAR(50)   | Type of engine used in the aircraft.                            |
+| `aircraft_status`         | VARCHAR(20)   | Current operational status (e.g., Active, Maintenance, Retired). |
+| `economy_seats_range`     | VARCHAR(20)   | Range of available economy class seats.                         |
+| `business_seats_range`    | VARCHAR(20)   | Range of available business class seats.                        |
+| `firstclass_seats_range`  | VARCHAR(20)   | Range of available first-class seats.                           |
+| `max_miles`              | INT           | Maximum range (miles) the aircraft can travel.                  |
+| `max_speed`              | INT           | Maximum speed of the aircraft (mph or km/h).                    |
+
+### Usage  
+- Supports aircraft fleet management and utilization analysis.  
+- Helps in optimizing flight operations based on aircraft capabilities.  
+- Used in fact tables to track aircraft performance, capacity, and routes.  
+
+## Table Name: `dim_date`
+
+### Description  
+The `dim_date` table is a date dimension that provides detailed attributes related to each calendar date. It supports time-based analysis for various fact tables in the airline data warehouse.
+
+### Columns  
+
+| Column Name  | Data Type      | Description                                      |
+|-------------|---------------|--------------------------------------------------|
+| `DateKey`   | NUMBER(8) (PK) | Unique identifier for each date (YYYYMMDD format). |
+| `Full_date` | DATE           | Full date value.                                |
+| `DayNumber` | NUMBER(1)      | Numeric representation of the day (1–7).       |
+| `DayName`   | VARCHAR(30)    | Name of the day (e.g., Monday, Tuesday).       |
+| `monthName` | VARCHAR(30)    | Name of the month (e.g., January, February).   |
+| `yearNo`    | NUMBER(7)      | Year value (e.g., 2024).                       |
+| `season`    | VARCHAR(30)    | Season classification (e.g., Winter, Summer).  |
+| `quarter`   | NUMBER(1)      | Quarter of the year (1–4).                     |
+
+### Usage  
+- Used in fact tables to enable time-based analysis and reporting.  
+- Supports seasonality analysis for revenue, passenger traffic, and service demand.  
+- Helps in filtering and aggregating data by day, month, quarter, and year.  
+
+## Table Name: `dim_channel`
+
+### Description  
+The `dim_channel` table stores information about the different booking or service channels used by passengers. It helps in analyzing sales distribution, customer preferences, and revenue sources.
+
+### Columns  
+
+| Column Name    | Data Type     | Description                                      |
+|---------------|--------------|--------------------------------------------------|
+| `channel_key` | INT (PK)      | Unique identifier for each channel record.      |
+| `channel_name` | VARCHAR(50)  | Name of the channel (e.g., Website, Mobile App, Agent). |
+| `channel_type` | VARCHAR(50)  | Category of the channel (e.g., Online, Offline). |
+
+### Usage  
+- Supports tracking of booking sources for sales analysis.  
+- Helps in understanding customer behavior and channel effectiveness.  
+- Used in fact tables to associate transactions with booking channels.  
 
 ## KPIs
 
