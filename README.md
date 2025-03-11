@@ -108,6 +108,46 @@ These numeric attributes are used for financial analysis and revenue tracking.
 - Tracks the impact of promotions and cancellation fees on overall revenue.  
 - Provides insights into reservation trends and seat allocation efficiency.  
 
+## Fact Table: Customer Interaction
+### Description
+This fact table supports the analysis of customer interactions by recording when, where, and how customers engage with the company. It helps in evaluating service effectiveness, identifying trends in customer concerns, and improving customer support strategies.
+
+### Granularity:
+The grain of this fact table is one row per recorded customer interaction. Each row represents a unique interaction between a customer and the business.
+
+### Columns
+
+| Column Name            | Data Type | Description                                        |
+|------------------------|----------|----------------------------------------------------|
+| PassangerKey          | INT (FK)  | Links to the passenger dimension.                 |
+| PassangerProfileKey   | INT (FK)  | Links to passenger profile details.               |
+| AircraftKey           | INT (FK)  | Links to the aircraft dimension.                  |
+| OriginAirportKey      | INT (FK)  | Links to the origin airport dimension.            |
+| DestinationAirportKey | INT (FK)  | Links to the destination airport dimension.       |
+| IssuedDateKey         | INT (FK)  | Links to the date the interaction was issued.     |
+| ClosedDateKey         | INT (FK)  | Links to the date the interaction was closed.     |
+| CrewKey               | INT (FK)  | Links to the crew member involved.                |
+| InteractionKey        | INT (FK)  | Links to the interaction type dimension.          |
+| EmployeeKey           | INT (FK)  | Links to the employee involved in the interaction.|
+| ChannelKey           | INT (FK)  | Links to the interaction channel dimension.       |
+| InteractionId         | INT   | Unique identifier for the interaction in 3NF schema. |
+| Status               | VARCHAR   | Current status of the interaction.                |
+| PassengerSatisfaction | INT      | Satisfaction rating provided by the passenger.    |
+| IssuedTime           | TIME      | Time the interaction was issued.                  |
+| ClosedTime           | TIME      | Time the interaction was closed.                  |
+
+### Reference Dimensions
+
+- `dim_passenger`
+- `dim_passenger_profile`
+- `dim_aircraft`
+- `dim_airport` (Origin & Destination)
+- `dim_date`
+- `dim_crew`
+- `dim_interaction`
+- `dim_employee`
+- `dim_channel`
+  
 ## Dimension Table Documentation
 
 ### Table Name: `dim_employee`
@@ -299,6 +339,28 @@ The `dim_channel` table stores information about the different booking or servic
 - Supports tracking of booking sources for sales analysis.  
 - Helps in understanding customer behavior and channel effectiveness.  
 - Used in fact tables to associate transactions with booking channels.  
+
+## Table Name: `dim_interaction`
+
+### Description
+The `dim_interaction` table is a dimension table that captures details about interactions. It includes information such as the type of interaction, its severity, and the channel through which it occurred.
+
+### Columns
+| Column Name        | Data Type | Description                                       |
+| ------------------ | --------- | ------------------------------------------------- |
+| InteractionKey     | INT (PK)  | Primary key, uniquely identifying an interaction. |
+| InteractionType    | VARCHAR   | Specifies the type of interaction.                |
+| Severity           | VARCHAR   | Indicates the severity level of the interaction.  |
+| InteractionChannel | VARCHAR   | Specifies the communication channel used.         |
+
+### Usage
+- Enables analysis of customer interactions across different channels.  
+- Helps in identifying trends in interaction severity and type.  
+- Supports linking interactions to transactions for better insights.  
+
+
+
+
 
 ## KPIs
 
