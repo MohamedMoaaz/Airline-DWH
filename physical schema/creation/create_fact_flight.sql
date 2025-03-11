@@ -1,0 +1,20 @@
+CREATE TABLE fact_flight (
+    passanger_key NUMBER,
+    passanger_profile_key NUMBER,
+    aircraft_key NUMBER,
+    fare_basis_key NUMBER,
+    crew_key NUMBER,
+    origin_airport_key NUMBER,
+    destination_airport_key NUMBER,
+    departure_date_key NUMBER,
+    arrival_date_key NUMBER,
+    ticket_number VARCHAR2(50),
+    fare_paid NUMBER,
+    overnight_stays NUMBER,
+    revenue NUMBER,
+    luggage_fees NUMBER,
+    upgrade_fees NUMBER,
+    services_fees NUMBER,
+    departure_time TIMESTAMP,
+    arrival_time TIMESTAMP
+);
