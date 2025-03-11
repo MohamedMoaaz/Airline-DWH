@@ -5,19 +5,19 @@ INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promoti
 VALUES (2, 102, 'Cashback', 'New Customers', 'Website', TO_DATE('2025-02-15', 'YYYY-MM-DD'), TO_DATE('2025-04-15', 'YYYY-MM-DD'), 'Y', 10.00);
 
 INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promotion_target_segment, promotion_channel, promotion_start_date, promotion_end_date, is_current, discount) 
-VALUES (3, 103, 'Bonus Miles', 'Loyal Customers', 'Mobile App', TO_DATE('2025-01-10', 'YYYY-MM-DD'), TO_DATE('2025-06-30', 'YYYY-MM-DD'), 'Y', NULL);
+VALUES (3, 103, 'Bonus Miles', 'Loyal Customers', 'Mobile App', TO_DATE('2025-01-10', 'YYYY-MM-DD'), TO_DATE('2025-06-30', 'YYYY-MM-DD'), 'Y', 0);
 
 INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promotion_target_segment, promotion_channel, promotion_start_date, promotion_end_date, is_current, discount) 
 VALUES (4, 104, 'Discount', 'All Customers', 'SMS', TO_DATE('2025-03-05', 'YYYY-MM-DD'), TO_DATE('2025-03-25', 'YYYY-MM-DD'), 'Y', 20.00);
 
 INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promotion_target_segment, promotion_channel, promotion_start_date, promotion_end_date, is_current, discount) 
-VALUES (5, 105, 'Upgrade Offer', 'Gold Members', 'Email', TO_DATE('2025-02-01', 'YYYY-MM-DD'), TO_DATE('2025-02-28', 'YYYY-MM-DD'), 'N', NULL);
+VALUES (5, 105, 'Upgrade Offer', 'Gold Members', 'Email', TO_DATE('2025-02-01', 'YYYY-MM-DD'), TO_DATE('2025-02-28', 'YYYY-MM-DD'), 'N', 0);
 
 INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promotion_target_segment, promotion_channel, promotion_start_date, promotion_end_date, is_current, discount) 
 VALUES (6, 106, 'Flash Sale', 'All Customers', 'Website', TO_DATE('2025-03-10', 'YYYY-MM-DD'), TO_DATE('2025-03-11', 'YYYY-MM-DD'), 'Y', 50.00);
 
 INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promotion_target_segment, promotion_channel, promotion_start_date, promotion_end_date, is_current, discount) 
-VALUES (7, 107, 'Bonus Miles', 'Business Travelers', 'Mobile App', TO_DATE('2025-04-01', 'YYYY-MM-DD'), TO_DATE('2025-04-30', 'YYYY-MM-DD'), 'Y', NULL);
+VALUES (7, 107, 'Bonus Miles', 'Business Travelers', 'Mobile App', TO_DATE('2025-04-01', 'YYYY-MM-DD'), TO_DATE('2025-04-30', 'YYYY-MM-DD'), 'Y', 0);
 
 INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promotion_target_segment, promotion_channel, promotion_start_date, promotion_end_date, is_current, discount) 
 VALUES (8, 108, 'Student Discount', 'Students', 'Website', TO_DATE('2025-01-01', 'YYYY-MM-DD'), TO_DATE('2025-12-31', 'YYYY-MM-DD'), 'Y', 25.00);
@@ -44,7 +44,7 @@ INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promoti
 VALUES (15, 111, 'Holiday Discount', 'All Customers', 'Website', TO_DATE('2026-12-01', 'YYYY-MM-DD'), TO_DATE('2026-12-31', 'YYYY-MM-DD'), 'Y', 45.00);
 
 INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promotion_target_segment, promotion_channel, promotion_start_date, promotion_end_date, is_current, discount) 
-VALUES (16, 105, 'Upgrade Offer', 'Gold Members', 'Email', TO_DATE('2025-03-01', 'YYYY-MM-DD'), TO_DATE('2025-03-31', 'YYYY-MM-DD'), 'Y', NULL);
+VALUES (16, 105, 'Upgrade Offer', 'Gold Members', 'Email', TO_DATE('2025-03-01', 'YYYY-MM-DD'), TO_DATE('2025-03-31', 'YYYY-MM-DD'), 'Y', 0);
 
 INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promotion_target_segment, promotion_channel, promotion_start_date, promotion_end_date, is_current, discount) 
 VALUES (17, 109, 'Senior Citizen Offer', 'Senior Citizens', 'Call Center', TO_DATE('2025-03-01', 'YYYY-MM-DD'), TO_DATE('2025-7-31', 'YYYY-MM-DD'), 'Y', 35.00);
