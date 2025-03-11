@@ -28,9 +28,9 @@ This fact table references dimensions from `Passenger`, `Aircraft`, `Fare`, `Cre
 
 
 
-🔹 Fact Table Name: fact_flight
-🔹 Granularity: The granularity of this fact table is a single ticketed flight transaction for a specific passenger. Each row represents a unique instance of a passenger traveling on a particular flight, including details such as fare paid, fees, and revenue. This ensures that the data is captured at the most detailed level for analysis.
-🔹 Measures:
+### Fact Table Name: fact_flight
+### Granularity: The granularity of this fact table is a single ticketed flight transaction for a specific passenger. Each row represents a unique instance of a passenger traveling on a particular flight, including details such as fare paid, fees, and revenue. This ensures that the data is captured at the most detailed level for analysis.
+### Measures:
 ![fact_Flight](https://github.com/user-attachments/assets/783a2591-4200-42f2-a884-e376f7556cfd)
 
 
