@@ -1,6 +1,6 @@
 CREATE TABLE dim_services (
-    service_id INT,
     service_key INT,
+    service_id INT,
     service_type VARCHAR2(255),
     service_category VARCHAR2(255),
     service_cost NUMBER(10, 2),
