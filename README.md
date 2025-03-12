@@ -393,7 +393,31 @@ The `dim_services`  table stores descriptive attributes related to services offe
 - This table serves as a dimension table to provide detailed context about services offered by the airline or aircraft.
 - It helps in tracking service usage, costs, and effectiveness across different categories and locations. 
 - Supports decision-making for optimizing service offerings and enhancing passenger satisfaction.
-  
+
+### Table Name: 'dim_farebasis'
+
+### Description
+The dim_farebasis table stores fare basis rules and classifications, including advance purchase requirements, restrictions, and penalties. It enables analysis of pricing strategies, fare popularity, and passenger preferences.
+
+### Columns  
+
+| Column Name        | Data Type       | Description                                         |
+|-------------------|----------------|-----------------------------------------------------|
+| `farebasis_key`   | NUMBER (PK)     | Unique identifier for each fare basis record.     |
+| `farebasis_code`  | VARCHAR2(50)    | Unique business code for the fare basis (e.g., Y26B, JFKLAX_Q). |
+| `farebasis_class` | VARCHAR2(50)    | Class of service (Economy, Business, First).      |
+| `farebasis_type`  | VARCHAR2(50)    | Type of fare (Discounted, Promotional, Award, Corporate). |
+| `adv_pur_req`     | CHAR(1)         | Indicates if advance purchase is required (Y/N).  |
+| `adv_pur_days`    | NUMBER          | Number of days in advance the fare must be purchased. |
+| `is_restricted`   | CHAR(1)         | Indicates if the fare has restrictions (Y/N).     |
+| `restrictions`    | VARCHAR2(500)   | Specific restrictions (e.g., "Non-refundable", "Weekend travel only"). |
+| `change_penalty`  | NUMBER(10,2)    | Fee charged for changing the ticket.              |
+| `cancel_penalty`  | NUMBER(10,2)    | Fee charged for canceling the ticket.             |
+
+### Usage 
+- Analyzes fare popularity by passenger tier (Gold/Platinum).
+- Tracks revenue impact of fare restrictions and penalties.
+- Evaluates promotion effectiveness (e.g., seasonal discounts).
   
 ## KPIs
 
