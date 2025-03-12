@@ -588,3 +588,6 @@ GCP was used as the data warehouse solution, leveraging its columnar storage arc
 ## unearned revenue per channel
 ![Q6](https://github.com/user-attachments/assets/9017c1cf-372e-427d-860b-5432eec619cf)
 
+## What is the average passenger satisfaction score for each interaction type?
+![Q7](https://github.com/user-attachments/assets/bf372fdc-b5a1-4f1f-bb0b-d66b23b12819)
+
