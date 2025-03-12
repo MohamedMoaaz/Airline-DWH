@@ -23,7 +23,7 @@ INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promoti
 VALUES (108, 8, 'Student Discount', 'Students', 'Website', TO_DATE('2025-01-01', 'YYYY-MM-DD'), TO_DATE('2025-12-31', 'YYYY-MM-DD'), 'Y', 25.00);
 
 INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promotion_target_segment, promotion_channel, promotion_start_date, promotion_end_date, is_current, discount) 
-VALUES (109, 9, 'Senior Citizen Offer', 'Senior Citizens', 'Call Center', TO_DATE('2025-02-01', 'YYYY-MM-DD'), TO_DATE('2025-02-31', 'YYYY-MM-DD'), 'N', 30.00);
+VALUES (109, 9, 'Senior Citizen Offer', 'Senior Citizens', 'Call Center', TO_DATE('2025-02-01', 'YYYY-MM-DD'), TO_DATE('2025-02-29', 'YYYY-MM-DD'), 'N', 30.00);
 
 INSERT INTO dim_promotions (promotion_id, promotion_key, promotion_type, promotion_target_segment, promotion_channel, promotion_start_date, promotion_end_date, is_current, discount) 
 VALUES (110, 10, 'Family Offer', 'Families', 'Email', TO_DATE('2025-03-15', 'YYYY-MM-DD'), TO_DATE('2025-06-15', 'YYYY-MM-DD'), 'Y', 18.00);
