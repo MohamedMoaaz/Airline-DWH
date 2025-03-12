@@ -50,3 +50,11 @@ GROUP BY
 ORDER BY
     total_promotion_transactions DESC;
 
+-- Which services are most frequently used by passengers?
+SELECT 
+    s.SERVICE_TYPE,
+    COUNT(f.SERVICE_KEY) AS Usage_Count
+FROM Fact_Points f
+JOIN dim_services s ON f.SERVICE_KEY = s.SERVICE_KEY
+GROUP BY s.SERVICE_TYPE
+ORDER BY Usage_Count DESC;
