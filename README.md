@@ -100,7 +100,7 @@ These numeric attributes are used for financial analysis and revenue tracking.
 | `Operational_Fees`  | NUMBER(10,2)  | Additional fees for operations (e.g., service fees).    | - |
 | `Cancelation_Fees`  | NUMBER(10,2)  | Fees applied if the reservation is canceled.            | - |
 | `Fare_Price`        | NUMBER(10,2)  | Base fare price of the ticket.                          | - |
-| `Final_Price`       | NUMBER(10,2)  | Total price paid by the passenger.                      | `Fare_Price + Operational_Fees + tax_amount + Cancelation_Fees - Promotion_Amount` |
+| `Final_Price`       | NUMBER(10,2)  | Total price paid by the passenger.                      | `if Is_cancelled == 0: Final_price = Fare_Price + Operational_Fees + tax_amount - Promotion_Amount else: Final_price = Cancelation_Fees` |
 
 ## Usage  
 - Supports revenue analysis and pricing optimization.  
