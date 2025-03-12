@@ -1,4 +1,4 @@
-CREATE TABLE dim_date (
+DWH_Project.CREATE TABLE dim_date (
     DateKey         INT64,       -- Surrogate Key in YYYYMMDD format
     Full_date       DATE,        -- Actual Date
     DayNumber       INT64,       -- Day of the month (1-31)
