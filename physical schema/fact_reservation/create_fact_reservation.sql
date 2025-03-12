@@ -23,5 +23,5 @@ CREATE TABLE DWH_Project.fact_reservation (
     Cancelation_Fees        NUMERIC(10,2),
     Fare_Price              NUMERIC(10,2),
     Final_Price             NUMERIC(10,2),  
-    Is_Cancelled            NUMMERIC(1)
+    Is_Cancelled            NUMERIC(1)
 );
