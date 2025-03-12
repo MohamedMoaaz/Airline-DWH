@@ -1,6 +1,5 @@
-CREATE TABLE dim_channel (
-    channel_key INT,
-    channel_name VARCHAR(50),
-    channel_type VARCHAR(50)
+CREATE TABLE DWH_Project.dim_channel (
+    channel_key INT64,
+    channel_name STRING,
+    channel_type STRING
 );
-
