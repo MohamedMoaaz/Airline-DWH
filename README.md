@@ -132,7 +132,55 @@ These numeric attributes are used for financial analysis and revenue tracking.
 - Supports revenue analysis and pricing optimization.  
 - Helps in understanding passenger booking patterns and channel preferences.  
 - Tracks the impact of promotions and cancellation fees on overall revenue.  
-- Provides insights into reservation trends and seat allocation efficiency.  
+- Provides insights into reservation trends and seat allocation efficiency.
+
+
+# Fact Table: `fact_points`
+
+## Description  
+The `fact_points` table tracks **frequent flyer points transactions**, including points earned, redeemed, and expired. It supports the analysis of **loyalty program engagement**, **promotion effectiveness**, and **passenger tier behavior**.
+
+### Granularity  
+The granularity of this fact table is **one row per points transaction event** (e.g., earning 500 points for a flight, redeeming 200 points for lounge access). Each row captures the context of the transaction, including the **associated passenger, service, promotion, and operational details**.
+
+## Columns  
+
+### Foreign Keys (Dimensional References)  
+These columns link to various dimension tables to provide detailed contextual information.
+
+| Column Name                 | Data Type      | Description                                        | Reference Dimension |
+|-----------------------------|---------------|----------------------------------------------------|----------------------|
+| `points_key`                | NUMBER (PK)   | Unique identifier for each points transaction.    | - |
+| `passenger_key`             | NUMBER        | Passenger earning/redeeming points.               | `dim_passenger` |
+| `passenger_profile_key`     | NUMBER        | Passenger’s tier status at transaction time.      | `dim_passenger_profile_history` |
+| `aircraft_key`              | NUMBER        | Aircraft used for the flight.                     | `dim_aircraft` |
+| `crew_employee_bridge_key`  | NUMBER        | Crew/employee association.                        | `crew_employee_bridge` |
+| `service_key`               | NUMBER        | Service linked to points (e.g., upgrades).        | `dim_services` |
+| `promotion_key`             | NUMBER        | Promotion applied (if any).                       | `dim_promotion` |
+
+### Date Attributes  
+These attributes provide **temporal insights** into the points transactions.
+
+| Column Name              | Data Type  | Description                      | Reference Dimension |
+|--------------------------|-----------|----------------------------------|----------------------|
+| `transaction_date_key`   | NUMBER    | Date of the transaction.        | `dim_date` |
+| `expiration_date_key`    | NUMBER    | Date points expired (if applicable). | `dim_date` |
+
+### Measures  
+
+| Column Name         | Data Type  | Description                           |
+|---------------------|-----------|---------------------------------------|
+| `points_earned`    | NUMBER     | Points earned in the transaction.    |
+| `points_redeemed`  | NUMBER     | Points redeemed in the transaction.  |
+| `points_expired`   | NUMBER     | Points expired in the transaction.   |
+
+## Usage  
+
+- **Loyalty Program Analysis**: Tracks points earned/redeemed by passenger tier (**Gold/Platinum**).
+- **Promotion Effectiveness**: Measures how promotions drive points accrual (e.g., `"Double Miles"` campaigns).
+- **Service Impact**: Identifies popular redemption services (e.g., upgrades, extra luggage).
+- **Expiration Trends**: Monitors points expiration rates by fare type or season.
+
 
 ## Fact Table: Customer Interaction
 ### Description
