@@ -354,24 +354,47 @@ The `dim_promotions` table stores descriptive attributes related to promotional 
 
 ### Columns  
 
-| Column Name  | Data Type      | Description                                      |
-|-------------|---------------|--------------------------------------------------|
-| `promotion_key`           | INT (PK)     | Unique identifier for each promotion record.                              |
-| `promotion_id`            | INT          | Unique identifier for the promotion.                                      |
-| `promotion_type`          | VARCHAR(255) | Describes the type of promotion.                                          |
-| `promotion_target_segment`| VARCHAR(255) | Target audience for the promotion (e.g., new customers, loyal customers). |
-| `promotion_channel`       | VARCHAR(255) | Channel used to deliver the promotion (e.g., email, mobile app, website). |
-| `promotion_start_date`    | DATE         | The date when the promotion starts.                                       |
-| `promotion_end_date`      | DATE         | The date when the promotion ends.                                         |
-| `is_current`              | CHAR(1)      | Indicates if the promotion is currently active ('Y' for yes, 'N' for no). |
-| `discount`                | NUMBER(10, 2)| Discount percentage offered in the promotion    .                          |
+| Column Name               | Data Type     | Description                                                               |
+|---------------------------|---------------|---------------------------------------------------------------------------|
+| `promotion_key`           | INT (PK)      | Unique identifier for each promotion record.                              |
+| `promotion_id`            | INT           | Unique identifier for the promotion.                                      |
+| `promotion_type`          | VARCHAR(255)  | Describes the type of promotion.                                          |
+| `promotion_target_segment`| VARCHAR(255)  | Target audience for the promotion (e.g., new customers, loyal customers). |
+| `promotion_channel`       | VARCHAR(255)  | Channel used to deliver the promotion (e.g., email, mobile app, website). |
+| `promotion_start_date`    | DATE          | The date when the promotion starts.                                       |
+| `promotion_end_date`      | DATE          | The date when the promotion ends.                                         |
+| `is_current`              | CHAR(1)       | Indicates if the promotion is currently active ('Y' for yes, 'N' for no). |
+| `discount`                | NUMBER(10, 2) | Discount percentage offered in the promotion    .                          |
 
 ### Usage  
 - This table can be used in fact tables to provide context for promotional activities.
 - It helps in tracking promotional effectiveness, target segments, and channels. 
 - Supports reporting and analysis of promotional campaigns.
 
+## Table Name: `dim_services`
 
+### Description  
+The `dim_services`  table stores descriptive attributes related to services offered by the airline. It provides context for analyzing service usage, costs, and effectiveness in enhancing passenger experience.
+
+### Columns  
+
+| Column Name          | Data Type     | Description                                                                |
+|----------------------|---------------|----------------------------------------------------------------------------|
+| `service_key`        | INT (PK)      | Unique identifier for each service record.                                 |
+| `service_id`         | INT           | Unique identifier for the service.                                         |
+| `service_type`       | VARCHAR(255)  | Type of service (e.g., in-flight meals, Wi-Fi access, priority boarding).  |
+| `service_category`   | VARCHAR(255)  | Category of the service (e.g., passenger comfort, passenger convenience).  |
+| `service_cost`       | NUMBER(10, 2) | Cost of the service to the passenger.                                          |
+| `service_location`   | VARCHAR2(255) | Location where the service is provided (e.g., aircraft cabin, boarding gate).  |
+| `start_date`         | DATE          | Start date of the service offering.                                            |
+| `end_date`           | DATE          | End date of the service offering (NULL if the service is still active).        |
+
+### Usage  
+- This table serves as a dimension table to provide detailed context about services offered by the airline or aircraft.
+- It helps in tracking service usage, costs, and effectiveness across different categories and locations. 
+- Supports decision-making for optimizing service offerings and enhancing passenger satisfaction.
+  
+  
 ## KPIs
 
 ### todo
