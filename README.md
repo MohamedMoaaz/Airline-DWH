@@ -1,48 +1,74 @@
-# Airline-DWH
+# Fact Table: `fact_flight`
 
-## Fact Table: Flight Revenue
-
-| Attribute             | Description                                      | Reference Dimension |
-|----------------------|--------------------------------------------------|----------------------|
-| PassangerKey        | Unique identifier for the passenger              | Passenger Dimension |
-| PassangerProfileKey | Profile details of the passenger                 | Passenger Dimension |
-| AIrcraftKey         | Aircraft identifier                               | Aircraft Dimension  |
-| FareBasisKey        | Fare classification                              | Fare Dimension      |
-| CrewKey            | Identifier for the crew                           | Crew Dimension      |
-| OriginAirportKey    | Code of the departure airport                    | Airport Dimension   |
-| DestinationAirportKey | Code of the arrival airport                    | Airport Dimension   |
-| DepartureDateKey    | Date of departure                                | Date Dimension      |
-| ArrivalDateKey      | Date of arrival                                  | Date Dimension      |
-| TicketNumber       | Unique ticket number                              | -                   |
-| FarePaid           | Cost of the ticket                                | -                   |
-| OvernightStays     | Number of overnight stays                        | -                   |
-| Revenue           | Total revenue from the flight                     | -                   |
-| LuggageFees       | Fees collected for luggage                        | -                   |
-| UpgradeFees       | Fees for seat upgrades                            | -                   |
-| ServicesFees      | Additional service fees                           | -                   |
-| DepartureTime     | Time of flight departure                          | -                   |
-| ArrivalTime       | Time of flight arrival                            | -                   |
-
+## Description
 This fact table references dimensions from `Passenger`, `Aircraft`, `Fare`, `Crew`, `Airport`, and `Date` attributes to provide a comprehensive dataset for flight revenue analysis.
 
+## Granularity
+The granularity of this fact table is a single ticketed flight transaction for a specific passenger. Each row represents a unique instance of a passenger traveling on a particular flight, including details such as fare paid, fees, and revenue. This ensures that the data is captured at the most detailed level for analysis.
 
-
-
-### Fact Table Name: fact_flight
-### Granularity: The granularity of this fact table is a single ticketed flight transaction for a specific passenger. Each row represents a unique instance of a passenger traveling on a particular flight, including details such as fare paid, fees, and revenue. This ensures that the data is captured at the most detailed level for analysis.
-### Measures:
 ![fact_Flight](https://github.com/user-attachments/assets/783a2591-4200-42f2-a884-e376f7556cfd)
 
+## Columns
 
+## Foreign Keys (Dimensional References)  
+These columns link to various dimension tables to provide detailed contextual information.  
 
-| Metric          | Definition & Calculation |
-|----------------|------------------------|
-| **OvernightStays** | Calculated by comparing `DepartureDateKey` and `ArrivalDateKey`. If the flight crosses midnight, an overnight stay is counted. |
-| **FarePaid** | The base price paid by the passenger for the ticket, determined by `FareBasisKey`. |
-| **LuggageFees** | Determined by airline pricing policies, based on baggage weight and count. |
-| **UpgradeFees** | Charged if a passenger upgrades to a higher seating class. |
-| **ServicesFees** | Includes optional services like in-flight meals, internet, and entertainment. |
-| **Revenue** | Sum of `FarePaid`, `LuggageFees`, `UpgradeFees`, and `ServicesFees` for a single ticket. |
+| Column Name             | Data Type        | Description                                          | Reference Dimension   |
+|-------------------------|-----------------|------------------------------------------------------|------------------------|
+| `PassengerKey`          | NUMBER(10)      | Unique identifier for the passenger.                 | Passenger Dimension   |
+| `PassengerProfileKey`   | NUMBER(10)      | Profile details of the passenger.                    | Passenger Dimension   |
+| `AircraftKey`           | NUMBER(10)      | Aircraft identifier.                                 | Aircraft Dimension    |
+| `FareBasisKey`          | NUMBER(10)      | Fare classification.                                 | Fare Dimension        |
+| `CrewKey`               | NUMBER(10)      | Identifier for the crew.                             | Crew Dimension        |
+| `OriginAirportKey`      | NUMBER(10)      | Code of the departure airport.                       | Airport Dimension     |
+| `DestinationAirportKey` | NUMBER(10)      | Code of the arrival airport.                         | Airport Dimension     |
+| `DepartureDateKey`      | NUMBER(10)      | Date of departure.                                   | Date Dimension        |
+| `ArrivalDateKey`        | NUMBER(10)      | Date of arrival.                                     | Date Dimension        |
+
+---
+
+## Time Attributes  
+These attributes provide insights into flight schedules.  
+
+| Column Name              | Data Type       | Description                                          |
+|--------------------------|----------------|------------------------------------------------------|
+| `DepartureTime`          | NUMBER(10)      | Exact departure time of the flight.                 |
+| `ArrivalTime`            | NUMBER(10)      | Exact arrival time of the flight.                   |
+
+---
+
+## Flight Details  
+These attributes define specific flight-related information.  
+
+| Column Name              | Data Type       | Description                                          |
+|--------------------------|----------------|------------------------------------------------------|
+| `TicketNumber`           | NUMBER(10)      | Unique ticket number.                                |
+
+---
+
+## Facts and Measures  
+These numeric attributes are used for financial analysis and revenue tracking.  
+
+| Column Name              | Data Type        | Description                                          |
+|--------------------------|-----------------|------------------------------------------------------|
+| `FarePaid`               | NUMBER(10,2)    | Cost of the ticket.                                  |
+| `OvernightStays`         | NUMBER(10)      | Number of overnight stays.                           |
+| `Revenue`               | NUMBER(10,2)    | Total revenue from the flight.                       |
+| `LuggageFees`           | NUMBER(10,2)    | Fees collected for luggage.                          |
+| `UpgradeFees`           | NUMBER(10,2)    | Fees for seat upgrades.                              |
+| `ServicesFees`          | NUMBER(10,2)    | Additional service fees.                             |
+
+---
+
+## Usage  
+This model is designed for a **flight transaction system** where a new row is inserted for every **customer trip**. Key functionalities include:  
+
+- **Tracking individual passenger trips**, linking each journey to specific passengers, aircraft, and airports.  
+- **Capturing financial details**, including fare paid, luggage fees, and service upgrades, for accurate revenue reporting.  
+- **Providing insights into travel patterns**, helping airlines optimize route efficiency and customer service.  
+- **Facilitating operational analysis**, enabling better crew management and aircraft utilization.  
+
+This structure ensures that **each flight taken by a passenger is uniquely recorded**, allowing for **detailed analytics** and **accurate revenue tracking** in the airline industry.  
 
 # Fact Table: `fact_reservation`
 
