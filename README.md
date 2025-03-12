@@ -347,8 +347,29 @@ The `dim_interaction` table is a dimension table that captures details about int
 - Helps in identifying trends in interaction severity and type.  
 - Supports linking interactions to transactions for better insights.  
 
+## Table Name: `dim_promotions`
 
+### Description  
+The `dim_promotions` table stores descriptive attributes related to promotional campaigns offered by the airline. It provides context for analyzing how promotions influence customer behavior, such as frequent flyer engagement, fare upgrades, and response to special offers. This table supports decision-making for marketing and finance teams.
 
+### Columns  
+
+| Column Name  | Data Type      | Description                                      |
+|-------------|---------------|--------------------------------------------------|
+| `promotion_key`           | INT (PK)     | Unique identifier for each promotion record.                              |
+| `promotion_id`            | INT          | Unique identifier for the promotion.                                      |
+| `promotion_type`          | VARCHAR(255) | Describes the type of promotion.                                          |
+| `promotion_target_segment`| VARCHAR(255) | Target audience for the promotion (e.g., new customers, loyal customers). |
+| `promotion_channel`       | VARCHAR(255) | Channel used to deliver the promotion (e.g., email, mobile app, website). |
+| `promotion_start_date`    | DATE         | The date when the promotion starts.                                       |
+| `promotion_end_date`      | DATE         | The date when the promotion ends.                                         |
+| `is_current`              | CHAR(1)      | Indicates if the promotion is currently active ('Y' for yes, 'N' for no). |
+| `discount`                | NUMBER(10, 2)| Discount percentage offered in the promotion    .                          |
+
+### Usage  
+- This table can be used in fact tables to provide context for promotional activities.
+- It helps in tracking promotional effectiveness, target segments, and channels. 
+- Supports reporting and analysis of promotional campaigns.
 
 
 ## KPIs
