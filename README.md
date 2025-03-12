@@ -124,7 +124,7 @@ This model is designed for a **flight transaction system** where a new row is in
 
 This structure ensures that **each flight taken by a passenger is uniquely recorded**, allowing for **detailed analytics** and **accurate revenue tracking** in the airline industry.  
 
-## Fact Table: Customer Interaction
+## Fact Table: `Customer Interaction`
 ### Description
 This fact table supports the analysis of customer interactions by recording when, where, and how customers engage with the company. It helps in evaluating service effectiveness, identifying trends in customer concerns, and improving customer support strategies.
 
