@@ -10,7 +10,7 @@ The granularity of this fact table is a single ticketed flight transaction for a
 
 ## Columns
 
-## Foreign Keys (Dimensional References)  
+### Foreign Keys (Dimensional References)  
 These columns link to various dimension tables to provide detailed contextual information.  
 
 | Column Name             | Data Type        | Description                                          | Reference Dimension   |
@@ -27,7 +27,7 @@ These columns link to various dimension tables to provide detailed contextual in
 
 ---
 
-## Time Attributes  
+### Time Attributes  
 These attributes provide insights into flight schedules.  
 
 | Column Name              | Data Type       | Description                                          |
@@ -37,7 +37,7 @@ These attributes provide insights into flight schedules.
 
 ---
 
-## Flight Details  
+### Flight Details  
 These attributes define specific flight-related information.  
 
 | Column Name              | Data Type       | Description                                          |
@@ -46,7 +46,7 @@ These attributes define specific flight-related information.
 
 ---
 
-## Facts and Measures  
+### Facts and Measures  
 These numeric attributes are used for financial analysis and revenue tracking.  
 
 | Column Name              | Data Type        | Description                                          |
@@ -79,7 +79,7 @@ The grain of this fact table is one row per recorded customer interaction. Each 
 
 ![fact_Customer_Interaction](https://github.com/TmohamedashrafT/Airline-DWH/blob/main/drawio%20schema/fact_CustomerInteraction.drawio.png)
 
-### Columns
+## Columns
 
 | Column Name            | Data Type | Description                                        | Reference Dimension |
 |------------------------|----------|----------------------------------------------------|---------------------|
@@ -115,7 +115,7 @@ These attributes provide insights into flight schedules.
 ## Description  
 The `fact_reservation` table stores transactional data related to flight reservations, including pricing, fees, and promotions. This table provides insights into reservation trends, revenue calculations, and passenger booking behavior.
 
-### Granularity:  
+## Granularity:  
 The granularity of this fact table is a **single reservation transaction** for a specific passenger. Each row represents a unique reservation, including details such as ticket pricing, applied fees, and promotions. This ensures that the data is captured at the most detailed level for analysis.
 
 ![Fact_Reservation](https://github.com/TmohamedashrafT/Airline-DWH/blob/main/drawio%20schema/fact_reservation.drawio.png)
@@ -155,7 +155,7 @@ These attributes provide insights into reservation and flight schedules.
 | `seat_no`               | VARCHAR2(10)  | Seat assigned to the passenger.                     |
 | `Is_Cancelled`          | NUMBER(1)     | Indicates if the reservation was canceled (0 = No, 1 = Yes). |
 
-## Measures & Calculations  
+### Measures & Calculations  
 
 These numeric attributes are used for financial analysis and revenue tracking.  
 
@@ -185,7 +185,7 @@ The granularity of this fact table is **one row per points transaction event** (
 
 ![fact_points](https://github.com/TmohamedashrafT/Airline-DWH/blob/main/drawio%20schema/fact_points.drawio.png)
 
-### Columns  
+## Columns  
 ### Foreign Keys (Dimensional References)  
 These columns link to various dimension tables to provide detailed contextual information.
 
@@ -227,12 +227,12 @@ These attributes provide **temporal insights** into the points transactions.
 
 ## Dimension Table Documentation
 
-### Table Name: `dim_employee`
+# Table Name: `dim_employee`
 
-### Description
+## Description
 The `dim_employee` table stores descriptive attributes related to employees, providing context for analytical processing in a star schema.
 
-### Columns
+## Columns
 
 | Column Name          | Data Type       | Description                                      |
 |----------------------|----------------|--------------------------------------------------|
