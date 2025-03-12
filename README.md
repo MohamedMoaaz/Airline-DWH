@@ -420,7 +420,7 @@ The `dim_services`  table stores descriptive attributes related to services offe
 - It helps in tracking service usage, costs, and effectiveness across different categories and locations. 
 - Supports decision-making for optimizing service offerings and enhancing passenger satisfaction.
 
-### Table Name: 'dim_farebasis'
+## Table Name: `dim_farebasis`
 
 ### Description
 The dim_farebasis table stores fare basis rules and classifications, including advance purchase requirements, restrictions, and penalties. It enables analysis of pricing strategies, fare popularity, and passenger preferences.
