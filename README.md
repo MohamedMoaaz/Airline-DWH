@@ -146,7 +146,7 @@ The grain of this fact table is one row per recorded customer interaction. Each 
 | `EmployeeKey`           | INT (FK)  | Links to the employee involved in the interaction.| `dim_employee`      |
 | `ChannelKey`           | INT (FK)  | Links to the interaction channel dimension.       | `dim_channel`       |
 | `InteractionId`         | INT   | Unique identifier for the interaction in 3NF schema. | -                 |
-| `Status`               | VARCHAR   | Current status of the interaction.                | -                 |
+| `Status`               | STRING   | Current status of the interaction.                | -                 |
 | `PassengerSatisfaction` | INT      | Satisfaction rating provided by the passenger.    | -                 |
 
 ---
@@ -207,8 +207,8 @@ These attributes provide insights into reservation and flight schedules.
 
 | Column Name              | Data Type      | Description                                          |
 |--------------------------|---------------|------------------------------------------------------|
-| `payment_method`         | VARCHAR2(50)  | Payment method used for the reservation.            |
-| `seat_no`               | VARCHAR2(10)  | Seat assigned to the passenger.                     |
+| `payment_method`         | STRING  | Payment method used for the reservation.            |
+| `seat_no`               | STRING  | Seat assigned to the passenger.                     |
 | `Is_Cancelled`          | NUMBER(1)     | Indicates if the reservation was canceled (0 = No, 1 = Yes). |
 
 #### Measures & Calculations  
@@ -293,12 +293,12 @@ The `dim_employee` table stores descriptive attributes related to employees, pro
 | Column Name          | Data Type       | Description                                      |
 |----------------------|----------------|--------------------------------------------------|
 | `EmployeeKey`       | INT (PK)        | Unique identifier for each employee record.      |
-| `EmployeeID`        | VARCHAR(50)     | Unique employee identifier.                      |
-| `EmployeeFirstName` | VARCHAR(100)    | First name of the employee.                      |
-| `EmployeeLastName`  | VARCHAR(100)    | Last name of the employee.                       |
-| `EmployeeEmail`     | VARCHAR(255)    | Official email address of the employee.          |
-| `EmployeePhoneNumber` | VARCHAR(20)   | Contact phone number of the employee.            |
-| `EmployeeJobTitle`  | VARCHAR(100)    | Job title of the employee.                       |
+| `EmployeeID`        | STRING     | Unique employee identifier.                      |
+| `EmployeeFirstName` | STRING    | First name of the employee.                      |
+| `EmployeeLastName`  | STRING    | Last name of the employee.                       |
+| `EmployeeEmail`     | STRING    | Official email address of the employee.          |
+| `EmployeePhoneNumber` | STRING   | Contact phone number of the employee.            |
+| `EmployeeJobTitle`  | STRING    | Job title of the employee.                       |
 | `EmployeeSalary`    | DECIMAL(10,2)   | Salary of the employee.                          |
 | `EmployeeHiringDate`| DATE            | Date when the employee was hired.                |
 
@@ -318,19 +318,19 @@ The `dim_passenger` table stores detailed information about passengers, providin
 |----------------------------|---------------|---------------------------------------------------------------|
 | `passenger_key`            | NUMBER (PK)   | Unique identifier for each passenger record.                  |
 | `passenger_id`             | NUMBER        | Passenger's internal identification number.                   |
-| `passenger_national_id`    | VARCHAR2(50)  | National identification number of the passenger.              |
-| `passenger_passport_id`    | VARCHAR2(50)  | Passport number of the passenger (if applicable).             |
-| `passenger_firstname`      | VARCHAR2(100) | First name of the passenger.                                  |
-| `passenger_lastname`       | VARCHAR2(100) | Last name of the passenger.                                   |
+| `passenger_national_id`    | STRING  | National identification number of the passenger.              |
+| `passenger_passport_id`    | STRING  | Passport number of the passenger (if applicable).             |
+| `passenger_firstname`      | STRING | First name of the passenger.                                  |
+| `passenger_lastname`       | STRING | Last name of the passenger.                                   |
 | `passenger_dob`            | DATE          | Date of birth of the passenger.                              |
-| `passenger_city`           | VARCHAR2(100) | City of residence of the passenger.                          |
-| `passenger_nationality`    | VARCHAR2(100) | Nationality of the passenger.                                |
-| `passenger_country`        | VARCHAR2(100) | Country of residence of the passenger.                       |
-| `passenger_email`          | VARCHAR2(100) | Contact email of the passenger.                              |
-| `passenger_phoneno`        | VARCHAR2(20)  | Contact phone number of the passenger.                       |
-| `passenger_gender`         | VARCHAR2(10)  | Gender of the passenger (e.g., Male, Female).         |
-| `passenger_language`       | VARCHAR2(50)  | Preferred language of the passenger.                         |
-| `passenger_marital_status` | VARCHAR2(20)  | Marital status of the passenger (e.g., Single, Married).     |
+| `passenger_city`           | STRING | City of residence of the passenger.                          |
+| `passenger_nationality`    | STRING | Nationality of the passenger.                                |
+| `passenger_country`        | STRING | Country of residence of the passenger.                       |
+| `passenger_email`          | STRING | Contact email of the passenger.                              |
+| `passenger_phoneno`        | STRING  | Contact phone number of the passenger.                       |
+| `passenger_gender`         | STRING  | Gender of the passenger (e.g., Male, Female).         |
+| `passenger_language`       | STRING  | Preferred language of the passenger.                         |
+| `passenger_marital_status` | STRING  | Marital status of the passenger (e.g., Single, Married).     |
 
 ### Usage  
 - Used in fact tables to track passenger-related transactions, such as ticket purchases and service usage.  
@@ -347,9 +347,9 @@ The `dim_passenger_profile` table stores information related to a passenger's tr
 | Column Name               | Data Type      | Description                                                   |
 |---------------------------|---------------|---------------------------------------------------------------|
 | `profile_key`             | NUMBER (PK)   | Unique identifier for each passenger profile record.          |
-| `frequent_flyer_tier`     | VARCHAR2(50)  | Loyalty program tier of the passenger (e.g., Silver, Gold). "Not loyal" in case the passenger is not enrolled in loyalty program.  |
-| `home_airport`            | VARCHAR2(100) | Primary airport of the passenger.                            |
-| `lifetime_mileage_tier`   | VARCHAR2(50)  | Tier based on the total miles flown by the passenger.        |
+| `frequent_flyer_tier`     | STRING  | Loyalty program tier of the passenger (e.g., Silver, Gold). "Not loyal" in case the passenger is not enrolled in loyalty program.  |
+| `home_airport`            | STRING | Primary airport of the passenger.                            |
+| `lifetime_mileage_tier`   | STRING  | Tier based on the total miles flown by the passenger.        |
 | `updated_date`            | DATE          | Date when the profile information was last updated.          |
 
 ### Usage  
@@ -368,9 +368,9 @@ The `dim_passenger_profile_history` table tracks historical changes in a passeng
 |--------------------------|---------------|-------------------------------------------------------------------|
 | `profile_history_key`    | NUMBER (PK)   | Unique identifier for each historical profile record.             |
 | `profile_key`            | NUMBER        | Reference to the passenger profile in `dim_passenger_profile`.    |
-| `frequent_flyer_tier`    | VARCHAR2(50)  | Loyalty program tier at the given time (e.g., Silver, Gold). "Not loyal" in case the passenger is not enrolled in loyalty program.      |
-| `home_airport`           | VARCHAR2(100) | Home airport of the passenger at the given time.                 |
-| `lifetime_mileage_tier`  | VARCHAR2(50)  | Mileage tier of the passenger during the recorded period.        |
+| `frequent_flyer_tier`    | STRING  | Loyalty program tier at the given time (e.g., Silver, Gold). "Not loyal" in case the passenger is not enrolled in loyalty program.      |
+| `home_airport`           | STRING | Home airport of the passenger at the given time.                 |
+| `lifetime_mileage_tier`  | STRING  | Mileage tier of the passenger during the recorded period.        |
 | `start_date`             | DATE          | Start date of the recorded profile status.                       |
 | `end_date`               | DATE          | End date of the recorded profile status (NULL if currently active). |
 
@@ -390,15 +390,15 @@ The `dim_airport` table stores details about airports, including their location,
 |--------------------------|---------------|---------------------------------------------------------------|
 | `airport_key`           | NUMBER (PK)   | Unique identifier for each airport record.                    |
 | `airport_id`            | NUMBER        | Internal airport identification number.                       |
-| `airport_name`          | VARCHAR2(100) | Name of the airport.                                          |
-| `airport_code`          | VARCHAR2(10)  | Unique airport code (IATA/ICAO).                              |
-| `airport_city`          | VARCHAR2(100) | City where the airport is located.                           |
-| `airport_country`       | VARCHAR2(100) | Country where the airport is located.                        |
-| `airport_region`        | VARCHAR2(100) | Geographic region of the airport.                            |
-| `airport_type`          | VARCHAR2(50)  | Type of airport (e.g., International, Domestic, Regional).   |
+| `airport_name`          | STRING | Name of the airport.                                          |
+| `airport_code`          | STRING  | Unique airport code (IATA/ICAO).                              |
+| `airport_city`          | STRING | City where the airport is located.                           |
+| `airport_country`       | STRING | Country where the airport is located.                        |
+| `airport_region`        | STRING | Geographic region of the airport.                            |
+| `airport_type`          | STRING  | Type of airport (e.g., International, Domestic, Regional).   |
 | `airport_latitude`      | NUMBER        | Latitude coordinate of the airport.                          |
 | `airport_longitude`     | NUMBER        | Longitude coordinate of the airport.                         |
-| `airport_hub_status`    | VARCHAR2(20)  | Indicates if the airport is a major hub (e.g., Hub, Non-Hub). |
+| `airport_hub_status`    | STRING  | Indicates if the airport is a major hub (e.g., Hub, Non-Hub). |
 | `airport_no_of_runways` | NUMBER        | Number of runways at the airport.                            |
 | `airport_no_of_terminals` | NUMBER     | Number of terminals at the airport.                          |
 
@@ -416,14 +416,14 @@ The `dim_aircraft` table stores details about aircraft, including their manufact
 | Column Name                | Data Type      | Description                                                      |
 |----------------------------|---------------|------------------------------------------------------------------|
 | `aircraft_key`            | INT (PK)      | Unique identifier for each aircraft record.                      |
-| `aircraft_model`          | VARCHAR(50)   | Model name of the aircraft.                                      |
-| `aircraft_manufacturer`   | VARCHAR(50)   | Manufacturer of the aircraft (e.g., Boeing, Airbus).             |
+| `aircraft_model`          | STRING   | Model name of the aircraft.                                      |
+| `aircraft_manufacturer`   | STRING   | Manufacturer of the aircraft (e.g., Boeing, Airbus).             |
 | `aircraft_capacity`       | INT           | Total seating capacity of the aircraft.                         |
-| `aircraft_enginetype`     | VARCHAR(50)   | Type of engine used in the aircraft.                            |
-| `aircraft_status`         | VARCHAR(20)   | Current operational status (e.g., Active, Maintenance, Retired). |
-| `economy_seats_range`     | VARCHAR(20)   | Range of available economy class seats.                         |
-| `business_seats_range`    | VARCHAR(20)   | Range of available business class seats.                        |
-| `firstclass_seats_range`  | VARCHAR(20)   | Range of available first-class seats.                           |
+| `aircraft_enginetype`     | STRING   | Type of engine used in the aircraft.                            |
+| `aircraft_status`         | STRING   | Current operational status (e.g., Active, Maintenance, Retired). |
+| `economy_seats_range`     | STRING   | Range of available economy class seats.                         |
+| `business_seats_range`    | STRING   | Range of available business class seats.                        |
+| `firstclass_seats_range`  | STRING   | Range of available first-class seats.                           |
 | `max_miles`              | INT           | Maximum range (miles) the aircraft can travel.                  |
 | `max_speed`              | INT           | Maximum speed of the aircraft (mph or km/h).                    |
 
@@ -444,10 +444,10 @@ The `dim_date` table is a date dimension that provides detailed attributes relat
 | `DateKey`   | NUMBER(8) (PK) | Unique identifier for each date (YYYYMMDD format). |
 | `Full_date` | DATE           | Full date value.                                |
 | `DayNumber` | NUMBER(1)      | Numeric representation of the day (1–7).       |
-| `DayName`   | VARCHAR(30)    | Name of the day (e.g., Monday, Tuesday).       |
-| `monthName` | VARCHAR(30)    | Name of the month (e.g., January, February).   |
+| `DayName`   | STRING    | Name of the day (e.g., Monday, Tuesday).       |
+| `monthName` | STRING    | Name of the month (e.g., January, February).   |
 | `yearNo`    | NUMBER(7)      | Year value (e.g., 2024).                       |
-| `season`    | VARCHAR(30)    | Season classification (e.g., Winter, Summer).  |
+| `season`    | STRING    | Season classification (e.g., Winter, Summer).  |
 | `quarter`   | NUMBER(1)      | Quarter of the year (1–4).                     |
 
 ### Usage  
@@ -465,8 +465,8 @@ The `dim_channel` table stores information about the different booking or servic
 | Column Name    | Data Type     | Description                                      |
 |---------------|--------------|--------------------------------------------------|
 | `channel_key` | INT (PK)      | Unique identifier for each channel record.      |
-| `channel_name` | VARCHAR(50)  | Name of the channel (e.g., Website, Mobile App, Agent). |
-| `channel_type` | VARCHAR(50)  | Category of the channel (e.g., Online, Offline). |
+| `channel_name` | STRING  | Name of the channel (e.g., Website, Mobile App, Agent). |
+| `channel_type` | STRING  | Category of the channel (e.g., Online, Offline). |
 
 ### Usage  
 - Supports tracking of booking sources for sales analysis.  
@@ -482,9 +482,9 @@ The `dim_interaction` table is a dimension table that captures details about int
 | Column Name        | Data Type | Description                                       |
 | ------------------ | --------- | ------------------------------------------------- |
 | InteractionKey     | INT (PK)  | Primary key, uniquely identifying an interaction. |
-| InteractionType    | VARCHAR   | Specifies the type of interaction.                |
-| Severity           | VARCHAR   | Indicates the severity level of the interaction.  |
-| InteractionChannel | VARCHAR   | Specifies the communication channel used.         |
+| InteractionType    | STRING   | Specifies the type of interaction.                |
+| Severity           | STRING   | Indicates the severity level of the interaction.  |
+| InteractionChannel | STRING   | Specifies the communication channel used.         |
 
 ### Usage
 - Enables analysis of customer interactions across different channels.  
@@ -502,9 +502,9 @@ The `dim_promotions` table stores descriptive attributes related to promotional 
 |---------------------------|---------------|---------------------------------------------------------------------------|
 | `promotion_key`           | INT (PK)      | Unique identifier for each promotion record.                              |
 | `promotion_id`            | INT           | Unique identifier for the promotion.                                      |
-| `promotion_type`          | VARCHAR(255)  | Describes the type of promotion.                                          |
-| `promotion_target_segment`| VARCHAR(255)  | Target audience for the promotion (e.g., new customers, loyal customers). |
-| `promotion_channel`       | VARCHAR(255)  | Channel used to deliver the promotion (e.g., email, mobile app, website). |
+| `promotion_type`          | STRING  | Describes the type of promotion.                                          |
+| `promotion_target_segment`| STRING  | Target audience for the promotion (e.g., new customers, loyal customers). |
+| `promotion_channel`       | STRING  | Channel used to deliver the promotion (e.g., email, mobile app, website). |
 | `promotion_start_date`    | DATE          | The date when the promotion starts.                                       |
 | `promotion_end_date`      | DATE          | The date when the promotion ends.                                         |
 | `is_current`              | CHAR(1)       | Indicates if the promotion is currently active ('Y' for yes, 'N' for no). |
@@ -526,10 +526,10 @@ The `dim_services`  table stores descriptive attributes related to services offe
 |----------------------|---------------|----------------------------------------------------------------------------|
 | `service_key`        | INT (PK)      | Unique identifier for each service record.                                 |
 | `service_id`         | INT           | Unique identifier for the service.                                         |
-| `service_type`       | VARCHAR(255)  | Type of service (e.g., in-flight meals, Wi-Fi access, priority boarding).  |
-| `service_category`   | VARCHAR(255)  | Category of the service (e.g., passenger comfort, passenger convenience).  |
+| `service_type`       | STRING  | Type of service (e.g., in-flight meals, Wi-Fi access, priority boarding).  |
+| `service_category`   | STRING  | Category of the service (e.g., passenger comfort, passenger convenience).  |
 | `service_cost`       | NUMBER(10, 2) | Cost of the service to the passenger.                                          |
-| `service_location`   | VARCHAR2(255) | Location where the service is provided (e.g., aircraft cabin, boarding gate).  |
+| `service_location`   | STRING | Location where the service is provided (e.g., aircraft cabin, boarding gate).  |
 | `start_date`         | DATE          | Start date of the service offering.                                            |
 | `end_date`           | DATE          | End date of the service offering (NULL if the service is still active).        |
 
@@ -548,13 +548,13 @@ The dim_farebasis table stores fare basis rules and classifications, including a
 | Column Name        | Data Type       | Description                                         |
 |-------------------|----------------|-----------------------------------------------------|
 | `farebasis_key`   | NUMBER (PK)     | Unique identifier for each fare basis record.     |
-| `farebasis_code`  | VARCHAR2(50)    | Unique business code for the fare basis (e.g., Y26B, JFKLAX_Q). |
-| `farebasis_class` | VARCHAR2(50)    | Class of service (Economy, Business, First).      |
-| `farebasis_type`  | VARCHAR2(50)    | Type of fare (Discounted, Promotional, Award, Corporate). |
+| `farebasis_code`  | STRING    | Unique business code for the fare basis (e.g., Y26B, JFKLAX_Q). |
+| `farebasis_class` | STRING    | Class of service (Economy, Business, First).      |
+| `farebasis_type`  | STRING    | Type of fare (Discounted, Promotional, Award, Corporate). |
 | `adv_pur_req`     | CHAR(1)         | Indicates if advance purchase is required (Y/N).  |
 | `adv_pur_days`    | NUMBER          | Number of days in advance the fare must be purchased. |
 | `is_restricted`   | CHAR(1)         | Indicates if the fare has restrictions (Y/N).     |
-| `restrictions`    | VARCHAR2(500)   | Specific restrictions (e.g., "Non-refundable", "Weekend travel only"). |
+| `restrictions`    | STRING   | Specific restrictions (e.g., "Non-refundable", "Weekend travel only"). |
 | `change_penalty`  | NUMBER(10,2)    | Fee charged for changing the ticket.              |
 | `cancel_penalty`  | NUMBER(10,2)    | Fee charged for canceling the ticket.             |
 
