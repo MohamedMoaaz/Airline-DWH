@@ -563,6 +563,68 @@ The dim_farebasis table stores fare basis rules and classifications, including a
 - Tracks revenue impact of fare restrictions and penalties.
 - Evaluates promotion effectiveness (e.g., seasonal discounts).
 
+## Table Name: `dim_crew`
+
+## Description
+
+The `dim_crew` table stores information about crew members, including their count and professional level. It provides details necessary for workforce management, performance tracking, and crew planning.
+
+
+## Table Architecture
+
+| Column Name          | Data Type | Description                                      |
+|----------------------|----------|--------------------------------------------------|
+| CrewKey             | INT (PK) | Unique identifier for the crew.                 |
+| CrewMemberCount     | INT      | Number of members in the crew.                  |
+| ProfessionalLevel   | STRING   | Level of expertise or rank of the crew members. |
+
+## Usage
+- Supports workforce planning by maintaining crew member details.  
+- Enables tracking of crew size and professional levels for operational analysis.  
+- Helps in optimizing resource allocation based on crew expertise.
+
+## Table Name: `dim_crew_employee_bridge`
+## Description
+
+The `dim_crew_employee_bridge` table acts as a bridge between crew members and employees, establishing a many-to-many relationship. It helps in tracking which employees are assigned to which crews for operational and reporting purposes.
+
+
+## Table Architecture
+
+| Column Name                | Data Type | Description                                  |
+|----------------------------|----------|----------------------------------------------|
+| CrewEmployeeBridgeKey      | INT (PK) | Unique identifier for the bridge table.     |
+| CrewKey                    | INT (FK) | Links to the crew dimension.                |
+| EmployeeKey                | INT (FK) | Links to the employee dimension.            |
+
+## Usage
+- Establishes a many-to-many relationship between employees and crews.  
+- Supports workforce planning and crew assignment tracking.  
+- Enables performance evaluation of employees within different crews.
+
+## Table Name: `dim_country_specific_date`
+## Description
+The `dim_country_specific_date` table provides date-related information specific to a country, including public holidays, religious holidays, and seasonal classifications. It supports time-based analysis across different regions.
+
+## Table Architecture
+
+| Column Name               | Data Type | Description                                      |
+|---------------------------|----------|--------------------------------------------------|
+| DateKey                   | INT (PK) | Unique identifier for the date.                 |
+| CountryKey                | INT (FK) | Links to the country dimension.                 |
+| CountryName               | STRING   | Name of the country.                            |
+| CivilName                 | STRING   | Official civil designation of the date.         |
+| CivilHolidayFlag          | STRING   | Indicates whether the date is a civil holiday.  |
+| CivilHolidayName          | STRING   | Name of the civil holiday (if applicable).      |
+| ReligiousHolidayFlag      | STRING   | Indicates whether the date is a religious holiday. |
+| ReligiousHolidayName      | STRING   | Name of the religious holiday (if applicable).  |
+| WeekdayIndicator          | STRING   | Identifies if the date is a weekday or weekend. |
+| SeasonName                | STRING   | Specifies the season corresponding to the date. |
+
+## Usage
+- Enables analysis of country-specific holidays for operational planning.  
+- Supports business intelligence reports based on national and religious holidays.  
+- Helps in tracking seasonal trends and their impact on business activities.  
 
 # 4. Query Optimization
 
