@@ -70,11 +70,11 @@ This model is designed for a **flight transaction system** where a new row is in
 
 This structure ensures that **each flight taken by a passenger is uniquely recorded**, allowing for **detailed analytics** and **accurate revenue tracking** in the airline industry.  
 
-## Fact Table: Customer Interaction
-### Description
+# Fact Table: Customer Interaction
+## Description
 This fact table supports the analysis of customer interactions by recording when, where, and how customers engage with the company. It helps in evaluating service effectiveness, identifying trends in customer concerns, and improving customer support strategies.
 
-### Granularity:
+## Granularity:
 The grain of this fact table is one row per recorded customer interaction. Each row represents a unique interaction between a customer and the business.
 
 ![fact_Customer_Interaction](https://github.com/TmohamedashrafT/Airline-DWH/blob/main/drawio%20schema/fact_CustomerInteraction.drawio.png)
@@ -83,22 +83,32 @@ The grain of this fact table is one row per recorded customer interaction. Each 
 
 | Column Name            | Data Type | Description                                        | Reference Dimension |
 |------------------------|----------|----------------------------------------------------|---------------------|
-| PassangerKey          | INT (FK)  | Links to the passenger dimension.                 | dim_passenger      |
-| PassangerProfileKey   | INT (FK)  | Links to passenger profile details.               | dim_passenger_profile |
-| AircraftKey           | INT (FK)  | Links to the aircraft dimension.                  | dim_aircraft       |
-| OriginAirportKey      | INT (FK)  | Links to the origin airport dimension.            | dim_airport        |
-| DestinationAirportKey | INT (FK)  | Links to the destination airport dimension.       | dim_airport        |
-| IssuedDateKey         | INT (FK)  | Links to the date the interaction was issued.     | dim_date          |
-| ClosedDateKey         | INT (FK)  | Links to the date the interaction was closed.     | dim_date          |
-| CrewKey               | INT (FK)  | Links to the crew member involved.                | dim_crew          |
-| InteractionKey        | INT (FK)  | Links to the interaction type dimension.          | dim_interaction   |
-| EmployeeKey           | INT (FK)  | Links to the employee involved in the interaction.| dim_employee      |
-| ChannelKey           | INT (FK)  | Links to the interaction channel dimension.       | dim_channel       |
-| InteractionId         | INT   | Unique identifier for the interaction in 3NF schema. | -                 |
-| Status               | VARCHAR   | Current status of the interaction.                | -                 |
-| PassengerSatisfaction | INT      | Satisfaction rating provided by the passenger.    | -                 |
-| IssuedTime           | TIME      | Time the interaction was issued.                  | -                 |
-| ClosedTime           | TIME      | Time the interaction was closed.                  | -                 |
+| `PassangerKey`          | INT (FK)  | Links to the passenger dimension.                 |`dim_passenger`      |
+| `PassangerProfileKey`   | INT (FK)  | Links to passenger profile details.               | `dim_passenger_profile` |
+| `AircraftKey`           | INT (FK)  | Links to the aircraft dimension.                  | `dim_aircraft`       |
+| `OriginAirportKey`      | INT (FK)  | Links to the origin airport dimension.            | `dim_airport`        |
+| `DestinationAirportKey` | INT (FK)  | Links to the destination airport dimension.       | `dim_airport`        |
+| `CrewKey`               | INT (FK)  | Links to the crew member involved.                | `dim_crew`          |
+| `InteractionKey`        | INT (FK)  | Links to the interaction type dimension.          | `dim_interaction`   |
+| `EmployeeKey`           | INT (FK)  | Links to the employee involved in the interaction.| `dim_employee`      |
+| `ChannelKey`           | INT (FK)  | Links to the interaction channel dimension.       | `dim_channel`       |
+| `InteractionId`         | INT   | Unique identifier for the interaction in 3NF schema. | -                 |
+| `Status`               | VARCHAR   | Current status of the interaction.                | -                 |
+| `PassengerSatisfaction` | INT      | Satisfaction rating provided by the passenger.    | -                 |
+
+---
+
+### Date and Time Attributes   
+These attributes provide insights into flight schedules.  
+
+| Column Name              | Data Type       | Description                                          |
+|--------------------------|----------------|------------------------------------------------------|
+| `IssuedDateKey`         | INT (FK)  | Links to the date the interaction was issued.     | `dim_date`          |
+| `ClosedDateKey`         | INT (FK)  | Links to the date the interaction was closed.     | `dim_date`          |
+| `IssuedTime`           | TIMESTAMP      | Time the interaction was issued.                  | -                 |
+| `ClosedTime`           | TIMESTAMP      | Time the interaction was closed.                  | -                 |
+
+---
 
 # Fact Table: `fact_reservation`
 
