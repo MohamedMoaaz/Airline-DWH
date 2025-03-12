@@ -568,10 +568,23 @@ The dim_farebasis table stores fare basis rules and classifications, including a
 
 GCP was used as the data warehouse solution, leveraging its columnar storage architecture to optimize query performance for analytical workloads. A serverless, columnar, and distributed design is provided by GCP’s BigQuery, enabling efficient processing of large datasets. Unlike traditional row-based databases, data is stored by columns instead of rows, allowing for faster query execution by retrieving only the required columns rather than scanning entire records. Query performance is further enhanced through improved data compression, as similar values within a column are stored more efficiently, reducing storage costs. Additionally, automatic indexing, partitioning, and clustering are provided by BigQuery, eliminating the need for manual indexing and optimizing query execution. By utilizing columnar storage, faster aggregations, filtering, and analytical queries are ensured, making it well-suited for business intelligence and decision-making processes.
 
-## KPIs
 
-### todo
+# 5. Business Questions
+## Identifies the top 10 most booked flight routes (origin to destination) among frequent flyers.
+![Q1](https://github.com/user-attachments/assets/b05731d8-9695-46c7-a60e-6ccb3a7bdf05)
 
-## Quries
+## Analyzes how different tiers of frequent flyers (Gold, Platinum, etc.) book flights by fare class (Economy, Business, First Class).
+![Q2](https://github.com/user-attachments/assets/48d67bd9-6cdf-4048-925c-978bdec10c69)
 
-### todo
+## Tracks frequent flyers' total flights and overnight stays.
+![Q3](https://github.com/user-attachments/assets/37401123-15eb-49dc-8311-adeb86902e5d)
+
+## moving_avg for unearned reveanue
+![Q4](https://github.com/user-attachments/assets/3cdad6fc-b518-4937-8e4c-e2dc4d12358f)
+
+## passenger demographics by age
+![Q5](https://github.com/user-attachments/assets/c9fa1b3d-0483-44e6-8903-f70735a43f1d)
+
+## unearned revenue per channel
+![Q6](https://github.com/user-attachments/assets/9017c1cf-372e-427d-860b-5432eec619cf)
+
