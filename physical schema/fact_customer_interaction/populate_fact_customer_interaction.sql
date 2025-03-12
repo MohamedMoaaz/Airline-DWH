@@ -1,3 +1,17 @@
 INSERT INTO fact_customer_interaction VALUES (1, 1, 1, 1, 1, 1, 999999, 1, 1, 1, 1, 'Open', 'Satisfied', 1, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '7' DAY);
 INSERT INTO fact_customer_interaction VALUES (2, 2, 2, 2, 2, 2, 999999, 2, 2, 2, 2, 'Closed', 'Neutral', 2, SYSTIMESTAMP, SYSTIMESTAMP);
 INSERT INTO fact_customer_interaction VALUES (3, 3, 3, 3, 3, 3, 999999, 3, 3, 3, 3, 'Pending', 'Dissatisfied', 3, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '30' DAY);
+INSERT INTO fact_customer_interaction VALUES (1, 1, 1, 1, 1, 1, 999999, 1, 1, 1, 1, 'Open', 'Satisfied', 1, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '7' DAY);
+INSERT INTO fact_customer_interaction VALUES (2, 2, 2, 2, 2, 2, 999999, 2, 2, 2, 2, 'Closed', 'Neutral', 2, SYSTIMESTAMP, SYSTIMESTAMP);
+INSERT INTO fact_customer_interaction VALUES (3, 3, 3, 3, 3, 3, 999999, 3, 3, 3, 3, 'Pending', 'Dissatisfied', 3, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '30' DAY);
+INSERT INTO fact_customer_interaction VALUES (4, 4, 4, 4, 4, 4, 999999, 4, 4, 4, 4, 'Closed', 'Satisfied', 4, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '2' DAY);
+INSERT INTO fact_customer_interaction VALUES (5, 5, 5, 5, 5, 5, 999999, 5, 5, 5, 5, 'Open', 'Neutral', 5, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '5' DAY);
+INSERT INTO fact_customer_interaction VALUES (6, 6, 6, 6, 6, 6, 999999, 6, 6, 6, 6, 'Pending', 'Dissatisfied', 6, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '10' DAY);
+INSERT INTO fact_customer_interaction VALUES (7, 7, 7, 7, 7, 7, 999999, 7, 7, 7, 7, 'Closed', 'Neutral', 7, SYSTIMESTAMP, SYSTIMESTAMP);
+INSERT INTO fact_customer_interaction VALUES (8, 8, 8, 8, 8, 8, 999999, 8, 8, 8, 8, 'Open', 'Satisfied', 8, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '3' DAY);
+INSERT INTO fact_customer_interaction VALUES (9, 9, 9, 9, 9, 9, 999999, 9, 9, 9, 9, 'Pending', 'Neutral', 9, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '15' DAY);
+INSERT INTO fact_customer_interaction VALUES (1, 3, 2, 1, 4, 5, 999999, 2, 3, 4, 5, 'Open', 'Satisfied', 3, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '8' DAY);
+INSERT INTO fact_customer_interaction VALUES (2, 4, 3, 2, 5, 6, 999999, 3, 4, 5, 6, 'Closed', 'Neutral', 4, SYSTIMESTAMP, SYSTIMESTAMP);
+INSERT INTO fact_customer_interaction VALUES (3, 5, 4, 3, 6, 7, 999999, 4, 5, 6, 7, 'Pending', 'Dissatisfied', 5, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '20' DAY);
+INSERT INTO fact_customer_interaction VALUES (4, 6, 5, 4, 7, 8, 999999, 5, 6, 7, 8, 'Closed', 'Satisfied', 6, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '12' DAY);
+INSERT INTO fact_customer_interaction VALUES (5, 7, 6, 5, 8, 9, 999999, 6, 7, 8, 9, 'Open', 'Neutral', 7, SYSTIMESTAMP, SYSTIMESTAMP + INTERVAL '6' DAY);

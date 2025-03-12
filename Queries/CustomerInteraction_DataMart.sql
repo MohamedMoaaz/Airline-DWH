@@ -11,10 +11,10 @@ LIMIT 5;
 -- 2. Which aircraft has the highest number of customer interactions with a severity level of 'High'?
 SELECT
     ac.AircraftKey,
-    COUNT(ci.InteractionId) AS HighSeverityInteractions
-FROM fact_CustomerInteraction ci
-JOIN dim_aircraft ac ON ci.AircraftKey = ac.AircraftKey
-JOIN dim_interaction i ON ci.InteractionKey = i.InteractionKey
+    COUNT(ci.INTERACTION_ID) AS HighSeverityInteractions
+FROM DWH_Project.fact_customer_interaction ci
+JOIN DWH_Project.dim_AirCraft ac ON ci.AIRCRAFT_KEY = ac.AircraftKey
+JOIN DWH_Project.dim_interaction i ON ci.INTERACTION_KEY = i.INTERACTION_KEY
 WHERE i.Severity = 'High'
 GROUP BY ac.AircraftKey
 ORDER BY HighSeverityInteractions DESC
@@ -22,9 +22,13 @@ LIMIT 1;
 
 -- 3. What is the average passenger satisfaction score for each interaction type?
 SELECT
-    i.InteractionType,
-    AVG(ci.PassengerSatisfaction) AS AvgSatisfaction
-FROM fact_CustomerInteraction ci
-JOIN dim_interaction i ON ci.InteractionKey = i.InteractionKey
-GROUP BY i.InteractionType
+    i.INTERACTION_TYPE,
+    AVG(CASE
+        WHEN ci.PASSENGER_SATISFACTION = 'Neutral' THEN 3
+        WHEN ci.PASSENGER_SATISFACTION = 'Satisfied' THEN 5
+        WHEN ci.PASSENGER_SATISFACTION = 'Dissatisfied' THEN 1
+        ELSE NULL end) AS AvgSatisfaction
+FROM DWH_Project.fact_customer_interaction ci
+JOIN DWH_Project.dim_interaction i ON ci.INTERACTION_ID = i.INTERACTION_KEY
+GROUP BY i.INTERACTION_TYPE
 ORDER BY AvgSatisfaction DESC;
