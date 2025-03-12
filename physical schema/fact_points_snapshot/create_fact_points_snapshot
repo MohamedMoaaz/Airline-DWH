@@ -1,6 +1,6 @@
-CREATE TABLE fact_points_snapshot (
-    snapshot_key NUMBER,
-    passenger_key NUMBER,
-    date_key NUMBER,
-    points_remaining NUMBER
+CREATE TABLE DWH_Project.fact_points_snapshot (
+    snapshot_key int64,
+    passenger_key int64,
+    date_key int64,
+    points_remaining int64
 );
