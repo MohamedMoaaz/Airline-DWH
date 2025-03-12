@@ -1,3 +1,6 @@
+INSERT INTO dim_passenger_profile (profile_key, frequent_flyer_tier, home_airport, lifetime_mileage_tier, updated_date)
+VALUES (0, 'Not loyal', 'None', 'None', TO_DATE('2024-05-15', 'YYYY-MM-DD'));
+
 -- Profile 1
 INSERT INTO dim_passenger_profile (profile_key, frequent_flyer_tier, home_airport, lifetime_mileage_tier, updated_date)
 VALUES (1, 'Gold', 'JFK', 'Under 100,000 miles', TO_DATE('2024-06-15', 'YYYY-MM-DD'));
