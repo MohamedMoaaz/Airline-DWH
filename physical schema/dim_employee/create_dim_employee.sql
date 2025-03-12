@@ -1,4 +1,4 @@
-CREATE TABLE dim_employee (
+CREATE TABLE DWH_Project.dim_employee (
     employee_key INT64,
     employee_id INT64,
     employee_first_name STRING,
