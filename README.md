@@ -291,7 +291,7 @@ The `dim_passenger_profile` table stores information related to a passenger's tr
 | Column Name               | Data Type      | Description                                                   |
 |---------------------------|---------------|---------------------------------------------------------------|
 | `profile_key`             | NUMBER (PK)   | Unique identifier for each passenger profile record.          |
-| `frequent_flyer_tier`     | VARCHAR2(50)  | Loyalty program tier of the passenger (e.g., Silver, Gold).  |
+| `frequent_flyer_tier`     | VARCHAR2(50)  | Loyalty program tier of the passenger (e.g., Silver, Gold). "Not loyal" in case the passenger is not enrolled in loyalty program.  |
 | `home_airport`            | VARCHAR2(100) | Primary airport of the passenger.                            |
 | `lifetime_mileage_tier`   | VARCHAR2(50)  | Tier based on the total miles flown by the passenger.        |
 | `updated_date`            | DATE          | Date when the profile information was last updated.          |
@@ -312,7 +312,7 @@ The `dim_passenger_profile_history` table tracks historical changes in a passeng
 |--------------------------|---------------|-------------------------------------------------------------------|
 | `profile_history_key`    | NUMBER (PK)   | Unique identifier for each historical profile record.             |
 | `profile_key`            | NUMBER        | Reference to the passenger profile in `dim_passenger_profile`.    |
-| `frequent_flyer_tier`    | VARCHAR2(50)  | Loyalty program tier at the given time (e.g., Silver, Gold).      |
+| `frequent_flyer_tier`    | VARCHAR2(50)  | Loyalty program tier at the given time (e.g., Silver, Gold). "Not loyal" in case the passenger is not enrolled in loyalty program.      |
 | `home_airport`           | VARCHAR2(100) | Home airport of the passenger at the given time.                 |
 | `lifetime_mileage_tier`  | VARCHAR2(50)  | Mileage tier of the passenger during the recorded period.        |
 | `start_date`             | DATE          | Start date of the recorded profile status.                       |
