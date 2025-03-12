@@ -9,4 +9,3 @@ create table dim_date (
     quarter number(1)
     );
 
-

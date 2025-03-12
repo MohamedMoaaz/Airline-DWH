@@ -582,3 +582,84 @@ VALUES (
     1200.00, 1330.00, 0
 );
 
+INSERT INTO fact_reservation (
+    Reservation_Key, 
+    ticket_id, 
+    channel_key, 
+    promotion_key, 
+    passenger_key,
+    fare_basis_key,
+     aircraft_key,
+      source_airport, 
+      destination_airport,
+    reservation_date_key,
+     departure_date_key,
+      departure_time,
+       Reservation_timestamp,
+    payment_method,
+     seat_no,
+    Promotion_Amount,
+     tax_amount,
+      Operational_Fees, 
+      Cancelation_Fees,
+    Fare_Price,
+     Final_Price, Is_Cancelled
+)
+VALUES (
+    30, 1030, 6, 9, 10,
+    15, 5, 3, 4,
+    20250408, 20250423,
+    TO_TIMESTAMP('2025-04-23 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),
+    TO_TIMESTAMP('2025-04-08 13:30:00', 'YYYY-MM-DD HH24:MI:SS'),
+    'PayPal', '21F',
+    30.00, 100.00, 60.00, 0.00,
+    1200.00, 1330.00, 0
+);
+INSERT INTO fact_reservation (
+    Reservation_Key, ticket_id, channel_key, promotion_key, passenger_key,
+    fare_basis_key, aircraft_key, source_airport, destination_airport,
+    reservation_date_key, departure_date_key, departure_time, Reservation_timestamp,
+    payment_method, seat_no,
+    Promotion_Amount, tax_amount, Operational_Fees, Cancelation_Fees,
+    Fare_Price, Final_Price, Is_Cancelled
+)
+VALUES (
+    30, 1030, 6, 9, 9,
+    15, 5, 3, 4,
+    20250408, 20250423,
+    TO_TIMESTAMP('2025-04-23 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),
+    TO_TIMESTAMP('2025-04-08 13:30:00', 'YYYY-MM-DD HH24:MI:SS'),
+    'PayPal', '21F',
+    30.00, 100.00, 60.00, 0.00,
+    1200.00, 1330.00, 0
+);
+INSERT INTO fact_reservation (
+    Reservation_Key, ticket_id, channel_key, promotion_key, passenger_key,
+    fare_basis_key, aircraft_key, source_airport, destination_airport,
+    reservation_date_key, departure_date_key, departure_time, Reservation_timestamp,
+    payment_method, seat_no,
+    Promotion_Amount, tax_amount, Operational_Fees, Cancelation_Fees,
+    Fare_Price, Final_Price, Is_Cancelled
+)
+VALUES (
+    30, 1030, 6, 9, 7,
+    15, 5, 3, 4,
+    20250408, 20250423,
+    TO_TIMESTAMP('2025-04-23 22:00:00', 'YYYY-MM-DD HH24:MI:SS'),
+    TO_TIMESTAMP('2025-04-08 13:30:00', 'YYYY-MM-DD HH24:MI:SS'),
+    'PayPal', '21F',
+    30.00, 100.00, 60.00, 0.00,
+    1200.00, 1330.00, 0
+);
+
+
+
+
+UPDATE fact_reservation
+SET Final_Price = Fare_Price + Operational_Fees + tax_amount - Promotion_Amount
+WHERE Is_Cancelled = 0;
+
+UPDATE fact_reservation
+SET Final_Price = Cancelation_Fees
+WHERE Is_Cancelled = 1;
+

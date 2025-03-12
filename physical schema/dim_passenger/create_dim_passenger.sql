@@ -13,5 +13,5 @@ CREATE TABLE dim_passenger (
     passenger_phoneno VARCHAR2(20),
     passenger_gender VARCHAR2(10),
     passenger_language VARCHAR2(50),
-    passenger_marital_status VARCHAR2(20),
+    passenger_marital_status VARCHAR2(20)
 );
