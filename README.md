@@ -1,3 +1,57 @@
+# Table of Contents
+## 1. Introduction
+## 2. Fact Tables and Data Marts
+### 2.1 Flight Activity Data Mart (*fact_flight*)  
+- **Business Process/Description**  
+- **Grain**  
+- **Logical Design**  
+- **Columns**  
+  - Foreign Keys (FK)  
+  - Date and Time  
+  - Fact and Measures 
+- **Usage**
+  
+### 2.2 Customer Interaction Data Mart (*fact_customer_interaction*)  
+- **Business Process/Description**  
+- **Grain**  
+- **Logical Design**  
+- **Columns**  
+  - Foreign Keys (FK)  
+  - Date and Time  
+- **Usage**  
+
+### 2.3 Reservation Process Data Mart (*fact_reservation*)  
+- **Business Process/Description**  
+- **Grain**  
+- **Logical Design**  
+- **Columns**  
+  - Foreign Keys (FK)  
+  - Date and Time  
+  - Fact and Measures 
+- **Usage**  
+
+### 2.4 Frequent Flyer Points Data Mart (*fact_points*)  
+- **Business Process/Description**  
+- **Grain**  
+- **Logical Design**  
+- **Columns**  
+  - Foreign Keys (FK)  
+  - Date and Time  
+  - Fact and Measures 
+- **Usage**  
+## 3. Dimension Tables
+## 4. Query Optimization
+## 5. Business Questions
+
+# Introduction
+In the highly competitive airline industry, data-driven decision-making is crucial for optimizing operations, enhancing customer satisfaction, and identifying new business opportunities. This project focuses on designing a Data Warehouse (DWH) model to support the executive management of a major airline company in analyzing key business processes.
+
+The primary objective is to enable a comprehensive analysis of flight activities, frequent flyer behavior, reservation processes, and customer interactions. The marketing team requires insights into passenger travel patterns, fare structures, loyalty program engagement, and promotional effectiveness. Additionally, the finance team seeks to evaluate company profits through multi-channel reservation data. Furthermore, customer service interactions, including complaints and feedback, must be analyzed to enhance service quality and customer retention.
+
+To achieve this, a dimensional modeling approach will be applied to develop a logical and physical design that supports efficient querying and reporting for decision support. The model will ensure seamless integration of data across various departments, enabling the airline to make informed strategic decisions.
+
+
+
 # Fact Table: `fact_flight`
 
 ## Description
