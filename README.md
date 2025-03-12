@@ -6,7 +6,7 @@ This fact table references dimensions from `Passenger`, `Aircraft`, `Fare`, `Cre
 ## Granularity
 The granularity of this fact table is a single ticketed flight transaction for a specific passenger. Each row represents a unique instance of a passenger traveling on a particular flight, including details such as fare paid, fees, and revenue. This ensures that the data is captured at the most detailed level for analysis.
 
-![fact_Flight](https://github.com/user-attachments/assets/783a2591-4200-42f2-a884-e376f7556cfd)
+![fact_Flight](https://github.com/TmohamedashrafT/Airline-DWH/blob/main/drawio%20schema/fact_flight.drawio.png)
 
 ## Columns
 
@@ -78,7 +78,7 @@ The `fact_reservation` table stores transactional data related to flight reserva
 ### Granularity:  
 The granularity of this fact table is a **single reservation transaction** for a specific passenger. Each row represents a unique reservation, including details such as ticket pricing, applied fees, and promotions. This ensures that the data is captured at the most detailed level for analysis.
 
-![Fact_Reservation](https://github.com/user-attachments/assets/20c1ed10-4b34-4dc5-871c-fa42fb3d38dc)
+![Fact_Reservation](https://github.com/TmohamedashrafT/Airline-DWH/blob/main/drawio%20schema/fact_reservation.drawio.png)
 
 ## Columns  
 
