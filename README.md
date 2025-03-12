@@ -51,20 +51,20 @@ The primary objective is to enable a comprehensive analysis of flight activities
 To achieve this, a dimensional modeling approach will be applied to develop a logical and physical design that supports efficient querying and reporting for decision support. The model will ensure seamless integration of data across various departments, enabling the airline to make informed strategic decisions.
 
 
+# 2. Fact Tables and Data Marts
+## Fact Table: `fact_flight`
 
-# Fact Table: `fact_flight`
-
-## Description
+### Description
 This fact table references dimensions from `Passenger`, `Aircraft`, `Fare`, `Crew`, `Airport`, and `Date` attributes to provide a comprehensive dataset for flight revenue analysis.
 
-## Granularity
+### Granularity
 The granularity of this fact table is a single ticketed flight transaction for a specific passenger. Each row represents a unique instance of a passenger traveling on a particular flight, including details such as fare paid, fees, and revenue. This ensures that the data is captured at the most detailed level for analysis.
 
 ![fact_Flight](https://github.com/TmohamedashrafT/Airline-DWH/blob/main/drawio%20schema/fact_flight.drawio.png)
 
-## Columns
+### Columns
 
-### Foreign Keys (Dimensional References)  
+#### Foreign Keys (Dimensional References)  
 These columns link to various dimension tables to provide detailed contextual information.  
 
 | Column Name             | Data Type        | Description                                          | Reference Dimension   |
@@ -81,7 +81,7 @@ These columns link to various dimension tables to provide detailed contextual in
 
 ---
 
-### Time Attributes  
+#### Time Attributes  
 These attributes provide insights into flight schedules.  
 
 | Column Name              | Data Type       | Description                                          |
@@ -91,7 +91,7 @@ These attributes provide insights into flight schedules.
 
 ---
 
-### Flight Details  
+#### Flight Details  
 These attributes define specific flight-related information.  
 
 | Column Name              | Data Type       | Description                                          |
@@ -100,7 +100,7 @@ These attributes define specific flight-related information.
 
 ---
 
-### Facts and Measures  
+#### Facts and Measures  
 These numeric attributes are used for financial analysis and revenue tracking.  
 
 | Column Name              | Data Type        | Description                                          |
@@ -114,7 +114,7 @@ These numeric attributes are used for financial analysis and revenue tracking.
 
 ---
 
-## Usage  
+### Usage  
 This model is designed for a **flight transaction system** where a new row is inserted for every **customer trip**. Key functionalities include:  
 
 - **Tracking individual passenger trips**, linking each journey to specific passengers, aircraft, and airports.  
@@ -124,17 +124,16 @@ This model is designed for a **flight transaction system** where a new row is in
 
 This structure ensures that **each flight taken by a passenger is uniquely recorded**, allowing for **detailed analytics** and **accurate revenue tracking** in the airline industry.  
 
-# Fact Table: Customer Interaction
-## Description
+## Fact Table: Customer Interaction
+### Description
 This fact table supports the analysis of customer interactions by recording when, where, and how customers engage with the company. It helps in evaluating service effectiveness, identifying trends in customer concerns, and improving customer support strategies.
 
-## Granularity:
+### Granularity:
 The grain of this fact table is one row per recorded customer interaction. Each row represents a unique interaction between a customer and the business.
 
 ![fact_Customer_Interaction](https://github.com/TmohamedashrafT/Airline-DWH/blob/main/drawio%20schema/fact_CustomerInteraction.drawio.png)
 
-## Columns
-
+#### Columns
 | Column Name            | Data Type | Description                                        | Reference Dimension |
 |------------------------|----------|----------------------------------------------------|---------------------|
 | `PassangerKey`          | INT (FK)  | Links to the passenger dimension.                 |`dim_passenger`      |
@@ -152,7 +151,7 @@ The grain of this fact table is one row per recorded customer interaction. Each 
 
 ---
 
-### Date and Time Attributes   
+#### Date and Time Attributes   
 These attributes provide insights into flight schedules.  
 
 | Column Name              | Data Type       | Description                                          |
@@ -163,20 +162,23 @@ These attributes provide insights into flight schedules.
 | `ClosedTime`           | TIMESTAMP      | Time the interaction was closed.                  | -                 |
 
 ---
+### Usage
+- Tracks customer interactions across different channels.  
+- Analyzes customer satisfaction and service performance.  
+- Helps in improving response times and issue resolution.
+## Fact Table: `fact_reservation`
 
-# Fact Table: `fact_reservation`
-
-## Description  
+### Description  
 The `fact_reservation` table stores transactional data related to flight reservations, including pricing, fees, and promotions. This table provides insights into reservation trends, revenue calculations, and passenger booking behavior.
 
-## Granularity:  
+### Granularity:  
 The granularity of this fact table is a **single reservation transaction** for a specific passenger. Each row represents a unique reservation, including details such as ticket pricing, applied fees, and promotions. This ensures that the data is captured at the most detailed level for analysis.
 
 ![Fact_Reservation](https://github.com/TmohamedashrafT/Airline-DWH/blob/main/drawio%20schema/fact_reservation.drawio.png)
 
-## Columns  
+### Columns  
 
-### Foreign Keys (Dimensional References)  
+#### Foreign Keys (Dimensional References)  
 These columns link to various dimension tables to provide detailed contextual information.  
 
 | Column Name              | Data Type      | Description                                          | Reference Dimension |
@@ -191,7 +193,7 @@ These columns link to various dimension tables to provide detailed contextual in
 | `source_airport`        | NUMBER(10)     | Departure airport.                                  | `dim_airport` |
 | `destination_airport`   | NUMBER(10)     | Arrival airport.                                    | `dim_airport` |
 
-### Date and Time Attributes  
+#### Date and Time Attributes  
 These attributes provide insights into reservation and flight schedules.  
 
 | Column Name              | Data Type      | Description                                          | Reference Dimension |
@@ -201,7 +203,7 @@ These attributes provide insights into reservation and flight schedules.
 | `departure_time`         | TIMESTAMP     | Exact departure time of the flight.                 | - |
 | `Reservation_timestamp`  | TIMESTAMP     | Timestamp when the reservation was created.         | - |
 
-### Reservation Details  
+#### Reservation Details  
 
 | Column Name              | Data Type      | Description                                          |
 |--------------------------|---------------|------------------------------------------------------|
@@ -209,7 +211,7 @@ These attributes provide insights into reservation and flight schedules.
 | `seat_no`               | VARCHAR2(10)  | Seat assigned to the passenger.                     |
 | `Is_Cancelled`          | NUMBER(1)     | Indicates if the reservation was canceled (0 = No, 1 = Yes). |
 
-### Measures & Calculations  
+#### Measures & Calculations  
 
 These numeric attributes are used for financial analysis and revenue tracking.  
 
@@ -222,16 +224,16 @@ These numeric attributes are used for financial analysis and revenue tracking.
 | `Fare_Price`        | NUMBER(10,2)  | Base fare price of the ticket.                          | - |
 | `Final_Price`       | NUMBER(10,2)  | Total price paid by the passenger.                      | `if Is_cancelled == 0: Final_price = Fare_Price + Operational_Fees + tax_amount - Promotion_Amount else: Final_price = Cancelation_Fees` |
 
-## Usage  
+### Usage  
 - Supports revenue analysis and pricing optimization.  
 - Helps in understanding passenger booking patterns and channel preferences.  
 - Tracks the impact of promotions and cancellation fees on overall revenue.  
 - Provides insights into reservation trends and seat allocation efficiency.
 
 
-# Fact Table: `fact_points`
+## Fact Table: `fact_points`
 
-## Description  
+### Description  
 The `fact_points` table tracks **frequent flyer points transactions**, including points earned, redeemed, and expired. It supports the analysis of **loyalty program engagement**, **promotion effectiveness**, and **passenger tier behavior**.
 
 ### Granularity  
@@ -239,8 +241,8 @@ The granularity of this fact table is **one row per points transaction event** (
 
 ![fact_points](https://github.com/TmohamedashrafT/Airline-DWH/blob/main/drawio%20schema/fact_points.drawio.png)
 
-## Columns  
-### Foreign Keys (Dimensional References)  
+### Columns  
+#### Foreign Keys (Dimensional References)  
 These columns link to various dimension tables to provide detailed contextual information.
 
 | Column Name                 | Data Type      | Description                                        | Reference Dimension |
@@ -253,7 +255,7 @@ These columns link to various dimension tables to provide detailed contextual in
 | `service_key`               | NUMBER        | Service linked to points (e.g., upgrades).        | `dim_services` |
 | `promotion_key`             | NUMBER        | Promotion applied (if any).                       | `dim_promotion` |
 
-### Date Attributes  
+#### Date Attributes  
 These attributes provide **temporal insights** into the points transactions.
 
 | Column Name              | Data Type  | Description                      | Reference Dimension |
@@ -261,7 +263,7 @@ These attributes provide **temporal insights** into the points transactions.
 | `transaction_date_key`   | NUMBER    | Date of the transaction.        | `dim_date` |
 | `expiration_date_key`    | NUMBER    | Date points expired (if applicable). | `dim_date` |
 
-### Measures  
+#### Measures  
 
 | Column Name         | Data Type  | Description                           |
 |---------------------|-----------|---------------------------------------|
@@ -269,7 +271,7 @@ These attributes provide **temporal insights** into the points transactions.
 | `points_redeemed`  | NUMBER     | Points redeemed in the transaction.  |
 | `points_expired`   | NUMBER     | Points expired in the transaction.   |
 
-## Usage  
+### Usage  
 
 - **Loyalty Program Analysis**: Tracks points earned/redeemed by passenger tier (**Gold/Platinum**).
 - **Promotion Effectiveness**: Measures how promotions drive points accrual (e.g., `"Double Miles"` campaigns).
@@ -279,14 +281,14 @@ These attributes provide **temporal insights** into the points transactions.
 
 
 
-## Dimension Table Documentation
+# 3. Dimension Tables
 
-# Table Name: `dim_employee`
+## Table Name: `dim_employee`
 
-## Description
+### Description
 The `dim_employee` table stores descriptive attributes related to employees, providing context for analytical processing in a star schema.
 
-## Columns
+### Columns
 
 | Column Name          | Data Type       | Description                                      |
 |----------------------|----------------|--------------------------------------------------|
@@ -560,7 +562,12 @@ The dim_farebasis table stores fare basis rules and classifications, including a
 - Analyzes fare popularity by passenger tier (Gold/Platinum).
 - Tracks revenue impact of fare restrictions and penalties.
 - Evaluates promotion effectiveness (e.g., seasonal discounts).
-  
+
+
+# 4. Query Optimization
+
+GCP was used as the data warehouse solution, leveraging its columnar storage architecture to optimize query performance for analytical workloads. A serverless, columnar, and distributed design is provided by GCP’s BigQuery, enabling efficient processing of large datasets. Unlike traditional row-based databases, data is stored by columns instead of rows, allowing for faster query execution by retrieving only the required columns rather than scanning entire records. Query performance is further enhanced through improved data compression, as similar values within a column are stored more efficiently, reducing storage costs. Additionally, automatic indexing, partitioning, and clustering are provided by BigQuery, eliminating the need for manual indexing and optimizing query execution. By utilizing columnar storage, faster aggregations, filtering, and analytical queries are ensured, making it well-suited for business intelligence and decision-making processes.
+
 ## KPIs
 
 ### todo
