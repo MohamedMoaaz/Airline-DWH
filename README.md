@@ -279,6 +279,36 @@ These attributes provide **temporal insights** into the points transactions.
 - **Expiration Trends**: Monitors points expiration rates by fare type or season.
 
 
+# Fact Table: `fact_points_snapshot`
+
+## Description  
+The `fact_points_snapshot` table stores **precomputed frequent flyer points balances** at specific intervals (e.g., **month-end**). Unlike transactional fact tables, it does not require runtime calculations for `points_remaining`, as balances are **pre-aggregated during ETL processes**.
+
+## Granularity  
+The granularity of this fact table is **one row per passenger per snapshot date** (typically **month-end**). Each row reflects the **passenger’s points balance at the snapshot date**.
+
+## Columns  
+
+### Foreign Keys (Dimensional References)  
+These columns link to various **dimension tables** to provide contextual insights.
+
+| Column Name       | Data Type    | Description                              | Reference Dimension |
+|------------------|-------------|------------------------------------------|----------------------|
+| `snapshot_key`   | NUMBER (PK)  | Unique identifier for each snapshot record. | - |
+| `passenger_key`  | NUMBER       | Passenger associated with the balance.  | `dim_passenger` |
+| `date_key`       | NUMBER       | Snapshot date (e.g., month-end).       | `dim_date` |
+
+### Measures  
+
+| Column Name         | Data Type  | Description                              | Calculation Logic (ETL) |
+|---------------------|-----------|------------------------------------------|-----------------------------------------------|
+| `points_remaining` | NUMBER     | Points balance as of the snapshot date. | `SUM(points_earned) - SUM(points_redeemed + points_expired)` from `fact_points` up to the snapshot date. |
+
+## Usage  
+
+- **Tier Retention**: Identifies passengers at risk of downgrading due to **low balances**.  
+- **Program Growth**: Tracks **overall points accumulation trends** over time.  
+- **Expiration Analysis**: Measures **seasonal impacts on point expiration rates**.  
 
 
 # 3. Dimension Tables
