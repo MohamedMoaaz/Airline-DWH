@@ -8,7 +8,7 @@
 - **Columns**  
   - Foreign Keys (FK)  
   - Date and Time  
-  - Fact and Measures 
+  - Fact and Measures
 - **Usage**
   
 ### 2.2 Customer Interaction Data Mart (*fact_customer_interaction*)  
